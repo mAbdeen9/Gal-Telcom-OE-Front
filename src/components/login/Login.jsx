@@ -47,6 +47,13 @@ const Login = () => {
             <input type="password" name="password" id="password" />
           </div>
           <button className={classes.loginBtn}>המשך</button>
+          <div>
+            <img
+              className={classes.imgLogin}
+              src="/undraw_Login_re_4vu2.png"
+              alt="imgLogin"
+            />
+          </div>
         </form>
       </div>
     </div>
