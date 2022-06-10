@@ -1,16 +1,45 @@
-//
-import React, { useState } from "react";
+import React from "react";
+import useInput from "../../hooks/use-input";
 import classes from "./Login.module.css";
 
-//
-
 const Login = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const {
+    enterdValue: phoneValue,
+    ValueIsValid: phoneIsVaild,
+    hasError: phoneHasError,
+    setIsTouched: setPhoneIsTouched,
+    valueChangeHandler: phoneChangeHandler,
+    inputBlurHandler: phoneInputBlurHandler,
+    resetForm: resetPhone,
+  } = useInput(
+    (value) => value.trim().length >= 7 && value.trim().length <= 11
+  );
 
-  const phoneNumberHandler = (e) => {
-    setPhoneNumber(e.target.value);
+  const {
+    enterdValue: passwordValue,
+    ValueIsValid: passwordIsVaild,
+    hasError: passwordHasError,
+    setIsTouched: setpasswordIsTouched,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordInputBlurHandler,
+    resetForm: resetPassword,
+  } = useInput((value) => value.length > 6 && value.length < 10);
+
+  let formIsVaild = false;
+  if (phoneIsVaild && passwordIsVaild) formIsVaild = true;
+
+  const formSubmissionHandler = (e) => {
+    e.preventDefault();
+    setPhoneIsTouched(true);
+    setpasswordIsTouched(true);
+    if (!formIsVaild) return;
+    console.log(123);
+    resetPhone();
+    resetPassword();
   };
 
+  const phoneInputClasses = phoneHasError ? classes.invaildPhone : "";
+  const passwordInputClasses = passwordHasError ? classes.invaildPassword : "";
   return (
     <div className={classes.main}>
       <div className={classes.loginBox}>
@@ -21,7 +50,7 @@ const Login = () => {
           </div>
           <div>Tellcom</div>
         </div>
-        <form className={classes.formSize}>
+        <form className={classes.formSize} onSubmit={formSubmissionHandler}>
           <div style={{ fontWeight: "bold", marginBottom: "1rem" }}>
             <span role="img" aria-label="user image">
               👤
@@ -33,18 +62,32 @@ const Login = () => {
               מספר טלפון
             </label>
             <input
-              onChange={phoneNumberHandler}
-              value={phoneNumber}
+              onChange={phoneChangeHandler}
+              onBlur={phoneInputBlurHandler}
+              value={phoneValue}
               type="number"
               name="phoneNumber"
               id="phone number"
+              className={phoneInputClasses}
             />
+            {phoneHasError && <p className={classes.errorMsg}>מספר לא תקין</p>}
           </div>
           <div className={classes.inputBox}>
             <label style={{ opacity: "0.7" }} htmlFor="password">
               סיסמה
             </label>
-            <input type="password" name="password" id="password" />
+            <input
+              onChange={passwordChangeHandler}
+              onBlur={passwordInputBlurHandler}
+              value={passwordValue}
+              type="password"
+              name="password"
+              id="password"
+              className={passwordInputClasses}
+            />
+            {passwordHasError && (
+              <p className={classes.errorMsg}>סיסמה שגויה</p>
+            )}
           </div>
           <button className={classes.loginBtn}>המשך</button>
           <div>

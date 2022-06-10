@@ -40,6 +40,15 @@
   top: 20px;
   left: 20px;
 }
+.invaildPhone {
+  background-color: #fddddd !important;
+  border: 1px solid #b40e0e !important;
+}
+
+.invaildPassword {
+  background-color: #fddddd !important;
+  border: 1px solid #b40e0e !important;
+}
 
 .inputBox {
   display: flex;
@@ -52,6 +61,21 @@
 .inputBox input {
   background-color: #efefef;
   border: 0;
+  padding: 0 0.5rem;
+  border-radius: 1rem;
+}
+
+.inputBox input:invalid {
+  background-color: #efefef;
+  border: 0;
+  padding: 0 0.5rem;
+  border-radius: 1rem;
+  background-color: red;
+}
+
+.errorMsg {
+  color: #b40e0e;
+  font-size: 1rem;
 }
 
 .loginBtn {
@@ -108,5 +132,12 @@
   .formSize {
     font-size: 1.3rem;
     margin-top: 20%;
+  }
+}
+
+@media (max-height: 420px) {
+  .formSize {
+    font-size: 1.3rem;
+    margin-top: 40%;
   }
 }
