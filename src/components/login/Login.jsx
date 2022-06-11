@@ -50,8 +50,18 @@ const Login = () => {
           </div>
           <div>Tellcom</div>
         </div>
-        <form className={classes.formSize} onSubmit={formSubmissionHandler}>
-          <div style={{ fontWeight: "bold", marginBottom: "1rem" }}>
+        <form
+          autoComplete="off"
+          className={classes.formSize}
+          onSubmit={formSubmissionHandler}
+        >
+          <div
+            className={classes.user}
+            style={{
+              fontWeight: "bold",
+              marginBottom: "1rem",
+            }}
+          >
             <span role="img" aria-label="user image">
               👤
             </span>

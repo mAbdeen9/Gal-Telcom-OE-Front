@@ -1,29 +1,58 @@
 .main {
-  font-family: "Poppins", sans-serif;
+  font-family: "Varela Round", sans-serif;
   width: 100%;
   height: 100vh;
   background: rgb(17, 206, 224);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgba(17, 206, 224, 1)),
+    color-stop(35%, rgba(108, 128, 237, 1))
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(17, 206, 224, 1) 0%,
+    rgba(108, 128, 237, 1) 35%
+  );
   background: linear-gradient(
     90deg,
     rgba(17, 206, 224, 1) 0%,
     rgba(108, 128, 237, 1) 35%
   );
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
 .loginBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   width: 40%;
   height: 80%;
   background-color: #ffffff;
   margin: auto;
   position: relative;
+  padding: 1rem;
   border-radius: 1rem;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.2);
@@ -35,7 +64,7 @@
   text-align: end;
   font-size: 1.7rem;
   font-weight: bold;
-  font-family: fantasy;
+  font-family: "Roboto Mono", monospace;
   position: absolute;
   top: 20px;
   left: 20px;
@@ -44,15 +73,20 @@
   background-color: #fddddd !important;
   border: 1px solid #b40e0e !important;
 }
-
 .invaildPassword {
   background-color: #fddddd !important;
   border: 1px solid #b40e0e !important;
 }
-
 .inputBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -61,7 +95,8 @@
 .inputBox input {
   background-color: #efefef;
   border: 0;
-  padding: 0 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   border-radius: 1rem;
 }
 
@@ -82,8 +117,14 @@
   cursor: pointer;
   font-size: 1.3rem;
   line-height: 1.2;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 0 20px;
   width: 80%;
@@ -102,6 +143,8 @@
 .imgLogin {
   width: 300px;
   margin: 1rem auto;
+  text-align: center;
+  display: block;
 }
 
 .formSize {
@@ -111,27 +154,34 @@
 /* Small Screen */
 @media (max-width: 768px) {
   .loginBox {
+    opacity: 312312123;
     width: 100%;
-    height: 100%;
+    min-height: 1000px;
     border-radius: 0;
-  }
-
-  .formSize {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-height: 641px) {
-  .loginBox {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
+    -webkit-box-shadow: none;
     box-shadow: none;
   }
+  .loginBtn {
+    width: 50%;
+  }
+
+  .user {
+    padding: 0 1rem;
+  }
+
+  .loginBox .inputBox {
+    width: 80%;
+    margin: 20px auto;
+  }
 
   .formSize {
+    margin-bottom: 100px;
     font-size: 1.3rem;
-    margin-top: 20%;
+  }
+
+  .imgLogin {
+    width: 300px;
+    margin: 1rem auto;
   }
 }
 
