@@ -2,24 +2,21 @@
   font-family: "Varela Round", sans-serif;
   width: 100%;
   height: 100vh;
-  background: rgb(17, 206, 224);
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(rgba(17, 206, 224, 1)),
-    color-stop(35%, rgba(108, 128, 237, 1))
-  );
-  background: -o-linear-gradient(
-    left,
-    rgba(17, 206, 224, 1) 0%,
-    rgba(108, 128, 237, 1) 35%
-  );
+
+  background: #7f7fd5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #91eae4,
+    #86a8e7,
+    #7f7fd5
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    90deg,
-    rgba(17, 206, 224, 1) 0%,
-    rgba(108, 128, 237, 1) 35%
-  );
+    to right,
+    #91eae4,
+    #86a8e7,
+    #7f7fd5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -185,9 +182,35 @@
   }
 }
 
-@media (max-height: 420px) {
+@media (max-height: 768px) {
+  .loginBox {
+    opacity: 312312123;
+    width: 100%;
+    min-height: 1000px;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .loginBtn {
+    width: 50%;
+  }
+
+  .user {
+    padding: 0 1rem;
+  }
+
+  .loginBox .inputBox {
+    width: 80%;
+    margin: 20px auto;
+  }
+
   .formSize {
+    margin-bottom: 100px;
     font-size: 1.3rem;
-    margin-top: 40%;
+  }
+
+  .imgLogin {
+    width: 300px;
+    margin: 1rem auto;
   }
 }

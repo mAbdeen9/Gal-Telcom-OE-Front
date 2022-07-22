@@ -1,8 +1,10 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import classes from "./Login.module.css";
 
 const Login = () => {
+  const history = useHistory();
   const {
     enterdValue: phoneValue,
     ValueIsValid: phoneIsVaild,
@@ -33,13 +35,15 @@ const Login = () => {
     setPhoneIsTouched(true);
     setpasswordIsTouched(true);
     if (!formIsVaild) return;
-    console.log(123);
+    console.log({ phoneNumber: phoneValue, password: passwordValue });
+    history.replace("/home");
     resetPhone();
     resetPassword();
   };
 
   const phoneInputClasses = phoneHasError ? classes.invaildPhone : "";
   const passwordInputClasses = passwordHasError ? classes.invaildPassword : "";
+
   return (
     <div className={classes.main}>
       <div className={classes.loginBox}>

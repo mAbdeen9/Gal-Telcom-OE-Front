@@ -32,4 +32,4 @@ const useInput = (validateFunc) => {
 };
 
 export default useInput;
-// phoneNumber.trim().length >= 7 && phoneNumber.trim().length <= 11;
+
