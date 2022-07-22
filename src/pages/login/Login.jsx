@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import { authActions } from "../../store/AuthSlice";
 import classes from "./Login.module.css";
@@ -11,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   console.log(isToken);
-  const history = useHistory();
+
   const {
     enterdValue: phoneValue,
     ValueIsValid: phoneIsVaild,
@@ -44,7 +43,6 @@ const Login = () => {
     if (!formIsVaild) return;
     console.log({ phoneNumber: phoneValue, password: passwordValue });
     dispatch(authActions.validator("1234"));
-    history.replace("/home");
     resetPhone();
     resetPassword();
   };
