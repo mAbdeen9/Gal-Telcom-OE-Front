@@ -1,9 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useInput from "../../hooks/use-input";
+import { authActions } from "../../store/AuthSlice";
 import classes from "./Login.module.css";
-
+import Logo from "../../components/Logo";
 const Login = () => {
+  //
+  const isToken = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+
+  console.log(isToken);
   const history = useHistory();
   const {
     enterdValue: phoneValue,
@@ -36,6 +43,7 @@ const Login = () => {
     setpasswordIsTouched(true);
     if (!formIsVaild) return;
     console.log({ phoneNumber: phoneValue, password: passwordValue });
+    dispatch(authActions.validator("1234"));
     history.replace("/home");
     resetPhone();
     resetPassword();
@@ -47,13 +55,7 @@ const Login = () => {
   return (
     <div className={classes.main}>
       <div className={classes.loginBox}>
-        <div className={classes.logo}>
-          <div>
-            <i className="bi bi-building"> </i>
-            <div style={{ display: "inline" }}>Gal</div>
-          </div>
-          <div>Tellcom</div>
-        </div>
+        <Logo class={classes.logo} />
         <form
           autoComplete="off"
           className={classes.formSize}
