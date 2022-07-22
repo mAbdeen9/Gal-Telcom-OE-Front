@@ -4,8 +4,11 @@ import useInput from "../../hooks/use-input";
 import { authActions } from "../../store/AuthSlice";
 import classes from "./Login.module.css";
 import Logo from "../../components/Logo";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   //
+  const navigate = useNavigate();
   const isToken = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
 
@@ -43,6 +46,7 @@ const Login = () => {
     if (!formIsVaild) return;
     console.log({ phoneNumber: phoneValue, password: passwordValue });
     dispatch(authActions.validator("1234"));
+    navigate("/home", { replace: true });
     resetPhone();
     resetPassword();
   };
