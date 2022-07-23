@@ -1,0 +1,42 @@
+.navBox {
+  background-color: #2a2e34;
+  height: 77px;
+  color: white;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  font-family: "Varela Round", sans-serif;
+}
+
+.nav {
+  height: 100%;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-content: center !important;
+}
+
+.logo {
+  text-align: end;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Roboto Mono", monospace;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emoji {
+  padding: 4px;
+}
+
+.boxBurger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 2rem;
+}

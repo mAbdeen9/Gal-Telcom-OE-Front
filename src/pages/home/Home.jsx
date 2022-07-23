@@ -1,9 +1,13 @@
 //
-
-import React from "react";
+import React, { Fragment } from "react";
+import Header from "../../components/Header";
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <Fragment>
+      <Header></Header>
+    </Fragment>
+  );
 }
 
 export default Home;
