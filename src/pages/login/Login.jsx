@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import useInput from "../../hooks/use-input";
 import { authActions } from "../../store/AuthSlice";
 import classes from "./Login.module.css";
@@ -9,10 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   //
   const navigate = useNavigate();
-  const isToken = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
-
-  console.log(isToken);
 
   const {
     enterdValue: phoneValue,
@@ -56,7 +53,7 @@ const Login = () => {
 
   return (
     <div className={classes.main}>
-      <div className={classes.loginBox}>
+      <div className={`${classes.loginBox}`}>
         <Logo class={classes.logo} />
         <form
           autoComplete="off"

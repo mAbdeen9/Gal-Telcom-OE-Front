@@ -1,9 +1,20 @@
 .box {
   position: absolute;
   z-index: 999;
-  background-color: red;
-  height: 400px;
+  background-color: #2a2e34;
+  height: 300px;
   width: 100%;
   color: white;
   font-size: 2rem;
+  animation-name: example;
+  animation-duration: 1.5s;
+}
+
+@keyframes example {
+  from {
+    height: 0;
+  }
+  to {
+    height: 300px;
+  }
 }
