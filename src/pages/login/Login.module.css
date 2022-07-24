@@ -2,18 +2,17 @@
   font-family: "Varela Round", sans-serif;
   width: 100%;
   min-height: 100vh;
-  background: rgb(17, 206, 224);
+  background: #606c88; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #3f4c6b,
+    #606c88
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    90deg,
-    rgba(17, 206, 224, 1) 0%,
-    rgba(75, 157, 232, 1) 22%,
-    rgba(85, 148, 234, 1) 26%,
-    rgba(95, 139, 235, 1) 30%,
-    rgba(108, 128, 237, 1) 35%,
-    rgba(112, 125, 234, 1) 39%,
-    rgba(123, 116, 224, 1) 51%,
-    rgba(170, 81, 184, 1) 100%
-  );
+    to right,
+    #3f4c6b,
+    #606c88
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   display: -webkit-box;
   display: -ms-flexbox;

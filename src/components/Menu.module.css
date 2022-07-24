@@ -2,19 +2,34 @@
   position: absolute;
   z-index: 999;
   background-color: #2a2e34;
-  height: 300px;
+  height: 200px;
   width: 100%;
   color: white;
-  font-size: 2rem;
+  font-size: 1.2rem;
   animation-name: example;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
+  border-top: 2px #393939 solid;
+  padding: 2rem 0;
 }
 
 @keyframes example {
   from {
-    height: 0;
+    height: 100px;
   }
   to {
-    height: 300px;
+    height: 200px;
   }
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  cursor: pointer;
+}
+
+.menuBtns {
+  padding: 0 0.5rem;
+  font-size: 1rem;
 }

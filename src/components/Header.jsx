@@ -31,7 +31,7 @@ function Header() {
         </div>
       </div>
       {showMenu && <Menu></Menu>}
-      <div className={classes.test}>Helloo</div>
+      <div className={classes.test}></div>
     </Fragment>
   );
 }

@@ -9,6 +9,9 @@ const AuthSlice = createSlice({
     validator(state, action) {
       state.token = action.payload || null;
     },
+    logout(state) {
+      state.token = null;
+    },
   },
 });
 
