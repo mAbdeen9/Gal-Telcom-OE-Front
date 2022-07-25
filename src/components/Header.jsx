@@ -18,10 +18,10 @@ function Header() {
             <div onClick={toggleBurger} className={classes.boxBurger}>
               <i className="bi bi-list"> </i>
             </div>
-            <div className={classes.box}>
+            <div className={classes.wellcomBox}>
               ברוך הבא מוחמד
               <span className={classes.emoji} role="img" aria-label="hi emoji">
-                👋🏻
+                👤
               </span>
             </div>
             <div className={classes.box}>
@@ -31,7 +31,6 @@ function Header() {
         </div>
       </div>
       {showMenu && <Menu></Menu>}
-      <div className={classes.test}></div>
     </Fragment>
   );
 }

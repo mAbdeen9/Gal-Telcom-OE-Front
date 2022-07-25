@@ -22,6 +22,13 @@
   font-family: "Roboto Mono", monospace;
 }
 
+.wellcomBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
 .box {
   display: flex;
   align-items: center;
@@ -41,10 +48,10 @@
   font-size: 2rem;
 }
 
-.test {
+/* .test {
   background-color: #12181b;
   height: 100vh;
   width: 100%;
   color: white;
   position: absolute;
-}
+} */

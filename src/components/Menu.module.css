@@ -10,6 +10,7 @@
   animation-duration: 1s;
   border-top: 2px #393939 solid;
   padding: 2rem 0;
+  font-weight: bold;
 }
 
 @keyframes example {
@@ -32,4 +33,5 @@ li {
 .menuBtns {
   padding: 0 0.5rem;
   font-size: 1rem;
+  font-weight: bold;
 }

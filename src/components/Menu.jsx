@@ -17,7 +17,7 @@ function Menu() {
             <li onClick={logoutHandler}>
               התנתק
               <span className={classes.menuBtns}>
-                <i className="bi bi-box-arrow-left"></i>
+                <i className="bi bi-power"></i>
               </span>
             </li>
             <br />

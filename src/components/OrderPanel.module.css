@@ -1,0 +1,47 @@
+.mainPanel {
+  background-color: #12181b;
+  height: 100vh;
+  width: 100%;
+  color: white;
+}
+
+.boxPanel {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  padding: 75px;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 700;
+}
+
+.gradienText {
+  background: #fb7f44;
+  background: linear-gradient(
+    to right,
+    #fb7f44 0%,
+    #fc6f57 19%,
+    #fc6364 48%,
+    #fd596f 85%,
+    #ff4484 100%
+  );
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.sizeRocket {
+  font-size: 2rem;
+}
+
+@media (max-width: 780px) {
+  .gradienText {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+  }
+}
