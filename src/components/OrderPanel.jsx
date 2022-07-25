@@ -13,7 +13,7 @@ function OrderPanel() {
               🤩
             </span>
           </div>
-          <div>Panel</div>
+          <div className={classes.orderBox}>Panel</div>
         </div>
       </div>
     </div>
