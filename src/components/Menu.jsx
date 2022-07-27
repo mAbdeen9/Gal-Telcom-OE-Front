@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../store/AuthSlice";
 import classes from "./Menu.module.css";
 
-function Menu() {
+const Menu = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
@@ -32,6 +32,6 @@ function Menu() {
       </div>
     </div>
   );
-}
+};
 
 export default Menu;

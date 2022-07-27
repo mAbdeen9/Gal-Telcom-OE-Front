@@ -1,0 +1,21 @@
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-top: 10px;
+  zoom: 1.3;
+  gap: 30px;
+}
+
+@media (max-width: 780px) {
+  .line {
+    zoom: 1.1;
+  }
+}
+
+@media (max-width: 350px) {
+  .line {
+    zoom: 0;
+    font-size: 12px;
+  }
+}

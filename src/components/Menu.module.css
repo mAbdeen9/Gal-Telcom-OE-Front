@@ -2,13 +2,15 @@
   position: absolute;
   z-index: 999;
   background-color: #2a2e34;
-  height: 200px;
+  height: 160px;
   width: 100%;
   color: white;
   font-size: 1.2rem;
   animation-name: example;
   animation-duration: 1s;
   border-top: 2px #393939 solid;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   padding: 2rem 0;
   font-weight: bold;
 }
@@ -18,7 +20,7 @@
     height: 100px;
   }
   to {
-    height: 200px;
+    height: 160px;
   }
 }
 

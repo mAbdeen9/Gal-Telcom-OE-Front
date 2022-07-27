@@ -5,7 +5,7 @@ import classes from "./Header.module.css";
 import Logo from "./Logo";
 import Menu from "./Menu";
 
-function Header() {
+const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleBurger = () => {
     setShowMenu((state) => !state);
@@ -33,6 +33,6 @@ function Header() {
       {showMenu && <Menu></Menu>}
     </Fragment>
   );
-}
+};
 
 export default Header;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Logo(props) {
+const Logo = (props) => {
   return (
     <div className={props.class}>
       <div>
@@ -10,6 +10,6 @@ function Logo(props) {
       <div>Tellcom</div>
     </div>
   );
-}
+};
 
 export default Logo;
