@@ -1,10 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Gear from "./Gear";
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
+  const order = useSelector((state) => state.order);
   const handelSubmint = (e) => {
     e.preventDefault();
+    console.log(order);
   };
   //
   return (
