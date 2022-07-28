@@ -3,31 +3,27 @@ import classes from "./Gear.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { OrderActions } from "./../store/OrderSlice";
-import { useEffect } from "react";
-let lastSelectedObj = {};
+import { useRef } from "react";
+
 const Gear = (props) => {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState(true);
-
-  useEffect(() => {
-    if (!selected) {
-      dispatch(OrderActions.addToTheOrder(lastSelectedObj));
-    }
-  }, [selected]);
-
+  const checkBoxRef = useRef();
   const OrderHandler = (e) => {
     const selectedValue = {
       name: e.target.name,
       value: e.target.value === "--" ? null : e.target.value,
     };
-
-    lastSelectedObj = selectedValue;
-
+    console.log(selectedValue);
     dispatch(OrderActions.addToTheOrder(selectedValue));
   };
 
   const selectedHandler = (e) => {
+    checkBoxRef.current.value = "--";
     setSelected((state) => !state);
+    if (!selected) {
+      dispatch(OrderActions.removeNotSeltected({ name: e.target.id }));
+    }
   };
 
   return (
@@ -46,6 +42,7 @@ const Gear = (props) => {
           disabled={selected}
           id={props.id}
           name={props.name}
+          ref={checkBoxRef}
         >
           <option>--</option>
           <option value="5">5</option>

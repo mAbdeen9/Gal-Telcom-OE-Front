@@ -12,8 +12,15 @@ const OrderSlice = createSlice({
           state.splice(i, 1);
         }
       });
-      if (action.payload.value == null) return;
+
       state.push(action.payload);
+    },
+    removeNotSeltected(state, action) {
+      state.forEach((order, i) => {
+        if (order.name === action.payload.name) {
+          state.splice(i, 1);
+        }
+      });
     },
   },
 });
