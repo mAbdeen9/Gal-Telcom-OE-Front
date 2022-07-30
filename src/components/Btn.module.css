@@ -1,0 +1,14 @@
+.btnStyle {
+  padding: 5px 20px;
+  border: 2px solid #0bc371;
+  border-radius: 3px;
+  background-color: transparent;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btnStyle:hover {
+  background-color: #0bc371;
+}

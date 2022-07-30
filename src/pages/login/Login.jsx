@@ -80,7 +80,7 @@ const Login = () => {
               onChange={phoneChangeHandler}
               onBlur={phoneInputBlurHandler}
               value={phoneValue}
-              type="number"
+              type="phone"
               name="phoneNumber"
               id="phone number"
               className={phoneInputClasses}

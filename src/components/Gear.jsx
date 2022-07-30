@@ -44,11 +44,21 @@ const Gear = (props) => {
           name={props.name}
           ref={checkBoxRef}
         >
-          <option>--</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
+          {props.id === "MOCA" ? (
+            <>
+              <option>--</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </>
+          ) : (
+            <>
+              <option>--</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </>
+          )}
         </select>
       </div>
     </div>
