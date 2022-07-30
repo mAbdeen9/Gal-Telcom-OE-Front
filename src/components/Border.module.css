@@ -1,0 +1,5 @@
+.BorderDot {
+  width: 100%;
+  height: 2px;
+  border-top: 1px dashed #2a2e34;
+}

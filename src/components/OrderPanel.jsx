@@ -1,16 +1,31 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import Btn from "./Btn";
-import Gear from "./Gear";
+import Border from "./Border";
+import Loading from "./Loading";
+import OrderCard from "./OrderCard";
+import OrderCardNoSerial from "./OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
   const order = useSelector((state) => state.order);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
+
   const handelSubmint = (e) => {
     e.preventDefault();
+    if (order.length === 0) return;
+    setIsLoading((state) => !state);
     console.log(order);
   };
-  //
+
+  const handelSubmintNoSerial = (e) => {
+    e.preventDefault();
+    if (order.length === 0) return;
+    setIsLoading2((state) => !state);
+    console.log(order);
+  };
+
   return (
     <div className={`container-fluid   ${classes.mainPanel} `}>
       <div className="container">
@@ -23,25 +38,19 @@ const OrderPanel = () => {
               📦 🚀
             </span>
           </div>
-          <div className={classes.orderBox}>
-            <span className={classes.t1}>ציוד סריאלי</span>
-            <form onSubmit={handelSubmint}>
-              <Gear id="B35" lable="נתב דגם B35" name="B35" />
-              <Gear id="vv5823" lable="נתב דגם AC VV5823" name="VV5823" />
-              <Gear id="AIO" lable="נתב סיבים דגם AIO" name="AIO" />
-              <Gear id="NOKIA" lable="מודם סיבים NOKIA" name="NOKIA" />
-              <Gear id="MASTERBOX" lable="ממיר MASTERBOX" name="MASTERBOX" />
-              <Gear id="ALTECH" lable="ממיר ALTECH" name="ALTECH" />
-              <Gear id="MESH" lable="מגדיל טווח MESH" name="MESH" />
-              <Gear id="DONGLE" lable="דונגל סלולרי" name="DONGLE" />
-              <Gear id="MOCA" lable="MOCA" name="MOCA" />
-
-              {/* <span className={classes.t1}>ציוד ללא סריאלי</span> */}
-
-              <br />
-              <Btn text="שלח" />
-            </form>
+          {isLoading ? <Loading /> : <OrderCard onSubmitCard={handelSubmint} />}
+          <br />
+          <Border />
+          <div className={classes.sizeRocket}>
+            <span role="img" aria-label="emoji">
+              ⚙️ 🛠
+            </span>
           </div>
+          {isLoading2 ? (
+            <Loading />
+          ) : (
+            <OrderCardNoSerial onSubmitCard={handelSubmintNoSerial} />
+          )}
         </div>
       </div>
     </div>

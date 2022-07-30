@@ -1,0 +1,32 @@
+.orderBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  background-color: #2a2e36;
+  padding: 1rem;
+  min-height: 500px;
+  width: 650px;
+  border-radius: 1rem;
+}
+
+.t1 {
+  background-color: #4e5556;
+  color: #cbff8f;
+  font-weight: 400;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+@media (max-width: 780px) {
+  .orderBox {
+    width: 350px;
+  }
+}
+
+@media (max-width: 350px) {
+  .orderBox {
+    width: 240px;
+  }
+}

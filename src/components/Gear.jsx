@@ -37,29 +37,48 @@ const Gear = (props) => {
       </div>
 
       <div>
-        <select
-          onChange={OrderHandler}
-          disabled={selected}
-          id={props.id}
-          name={props.name}
-          ref={checkBoxRef}
-        >
-          {props.id === "MOCA" ? (
+        {props.serial && (
+          <select
+            onChange={OrderHandler}
+            disabled={selected}
+            id={props.id}
+            name={props.name}
+            ref={checkBoxRef}
+          >
+            {props.id === "MOCA" ? (
+              <>
+                <option>--</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+              </>
+            ) : (
+              <>
+                <option>--</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </>
+            )}
+          </select>
+        )}
+
+        {props.noserial && (
+          <select
+            onChange={OrderHandler}
+            disabled={selected}
+            id={props.id}
+            name={props.name}
+            ref={checkBoxRef}
+          >
             <>
               <option>--</option>
+              <option value="1">1</option>
+              <option value="3">3</option>
               <option value="5">5</option>
-              <option value="10">10</option>
             </>
-          ) : (
-            <>
-              <option>--</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </>
-          )}
-        </select>
+          </select>
+        )}
       </div>
     </div>
   );
