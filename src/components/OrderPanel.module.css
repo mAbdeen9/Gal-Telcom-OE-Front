@@ -38,6 +38,10 @@
   font-size: 2rem;
 }
 
+.loadingBox {
+  padding: 4rem;
+}
+
 @media (max-width: 780px) {
   .gradienText {
     font-size: 1rem;

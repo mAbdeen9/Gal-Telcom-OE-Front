@@ -38,7 +38,13 @@ const OrderPanel = () => {
               📦 🚀
             </span>
           </div>
-          {isLoading ? <Loading /> : <OrderCard onSubmitCard={handelSubmint} />}
+          {isLoading ? (
+            <div className={classes.loadingBox}>
+              <Loading />
+            </div>
+          ) : (
+            <OrderCard onSubmitCard={handelSubmint} />
+          )}
           <br />
           <Border />
           <div className={classes.sizeRocket}>
@@ -47,7 +53,9 @@ const OrderPanel = () => {
             </span>
           </div>
           {isLoading2 ? (
-            <Loading />
+            <div className={classes.loadingBox}>
+              <Loading />
+            </div>
           ) : (
             <OrderCardNoSerial onSubmitCard={handelSubmintNoSerial} />
           )}

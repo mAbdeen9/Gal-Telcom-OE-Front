@@ -19,10 +19,10 @@ const Header = () => {
               <i className="bi bi-list"> </i>
             </div>
             <div className={classes.wellcomBox}>
-              ברוך הבא מוחמד
               <span className={classes.emoji} role="img" aria-label="hi emoji">
                 👤
               </span>
+              ברוך הבא מוחמד
             </div>
             <div className={classes.box}>
               <Logo class={classes.logo} />

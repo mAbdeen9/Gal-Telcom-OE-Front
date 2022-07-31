@@ -5,7 +5,7 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  font-family: "Varela Round", sans-serif;
+  font-family: "Assistant", sans-serif;
 }
 
 .nav {
@@ -19,7 +19,7 @@
   text-align: end;
   font-size: 1rem;
   font-weight: bold;
-  font-family: "Roboto Mono", monospace;
+  font-family: "Mochiy Pop One", sans-serif;
 }
 
 .wellcomBox {
@@ -47,11 +47,3 @@
   cursor: pointer;
   font-size: 2rem;
 }
-
-/* .test {
-  background-color: #12181b;
-  height: 100vh;
-  width: 100%;
-  color: white;
-  position: absolute;
-} */
