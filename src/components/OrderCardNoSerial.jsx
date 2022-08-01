@@ -111,6 +111,7 @@ function OrderCardNoSerial(props) {
           lable="איזולירבנד"
           name="ISOLERBAND"
         />
+        <Gear noserial={true} id="Silcon" lable="סיליקון" name="Silcon" />
         <br />
         <Btn text="שלח" />
       </form>

@@ -2,27 +2,29 @@ import React from "react";
 import classes from "./Gear.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { OrderActions } from "./../store/OrderSlice";
+import { OrderSerialActions } from "./../store/OrderSerialSlice";
 import { useRef } from "react";
 
 const Gear = (props) => {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState(true);
   const checkBoxRef = useRef();
+
   const OrderHandler = (e) => {
     const selectedValue = {
       name: e.target.name,
       value: e.target.value === "--" ? null : e.target.value,
     };
     console.log(selectedValue);
-    dispatch(OrderActions.addToTheOrder(selectedValue));
+    if (props.serial) dispatch(OrderSerialActions.addToTheOrder(selectedValue));
   };
 
   const selectedHandler = (e) => {
     checkBoxRef.current.value = "--";
     setSelected((state) => !state);
     if (!selected) {
-      dispatch(OrderActions.removeNotSeltected({ name: e.target.id }));
+      if (props.serial)
+        dispatch(OrderSerialActions.removeNotSeltected({ name: e.target.id }));
     }
   };
 

@@ -1,0 +1,29 @@
+.cardBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  background-color: #2a2e36;
+  padding: 1rem;
+  min-height: 200px;
+  width: 650px;
+  border-radius: 1rem;
+  font-family: "Varela Round", sans-serif;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 780px) {
+  .cardBox {
+    width: 350px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .cardBox {
+    width: 240px;
+    font-size: 1rem;
+  }
+}

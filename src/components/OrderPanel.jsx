@@ -3,27 +3,36 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Border from "./Border";
 import Loading from "./Loading";
+import MessageCard from "./MessageCard";
 import OrderCard from "./OrderCard";
 import OrderCardNoSerial from "./OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
-  const order = useSelector((state) => state.order);
+  const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
+  const [response, setResponse] = useState(null);
+  const [messageFromServer, setMessageFromServer] = useState("");
 
-  const handelSubmint = (e) => {
+  const handelSubmintSerial = (e) => {
     e.preventDefault();
-    if (order.length === 0) return;
+    if (OrderSerialSlice.length === 0) return;
     setIsLoading((state) => !state);
-    console.log(order);
+    console.log(OrderSerialSlice);
+    setTimeout(() => {
+      setResponse(true);
+      setMessageFromServer("קיבלנו את בקשתך בהצלחה 👍");
+      setIsLoading((state) => !state);
+    }, 3000);
   };
 
   const handelSubmintNoSerial = (e) => {
     e.preventDefault();
-    if (order.length === 0) return;
+    if (OrderSerialSlice.length === 0) return;
     setIsLoading2((state) => !state);
-    console.log(order);
+    console.log(OrderSerialSlice);
   };
 
   return (
@@ -38,12 +47,16 @@ const OrderPanel = () => {
               📦 🚀
             </span>
           </div>
-          {isLoading ? (
-            <div className={classes.loadingBox}>
-              <Loading />
-            </div>
+          {!response ? (
+            isLoading ? (
+              <div className={classes.loadingBox}>
+                <Loading />
+              </div>
+            ) : (
+              <OrderCard onSubmitCard={handelSubmintSerial} />
+            )
           ) : (
-            <OrderCard onSubmitCard={handelSubmint} />
+            <MessageCard message={messageFromServer} />
           )}
           <br />
           <Border />

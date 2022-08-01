@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
-const OrderSlice = createSlice({
+const OrderSerialSlice = createSlice({
   name: "Order",
   initialState,
   reducers: {
@@ -27,5 +27,5 @@ const OrderSlice = createSlice({
   },
 });
 
-export const OrderActions = OrderSlice.actions;
-export default OrderSlice.reducer;
+export const OrderSerialActions = OrderSerialSlice.actions;
+export default OrderSerialSlice.reducer;
