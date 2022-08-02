@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { authActions } from "../store/AuthSlice";
+import { authActions } from "../../store/AuthSlice";
 import classes from "./Menu.module.css";
 
 const Menu = () => {

@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Fragment } from "react";
 import classes from "./Header.module.css";
-import Logo from "./Logo";
-import Menu from "./Menu";
+import Logo from "../Logo/Logo";
+import Menu from "../Menu/Menu";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);

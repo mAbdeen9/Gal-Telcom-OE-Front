@@ -1,7 +1,7 @@
 //
 import React, { Fragment } from "react";
-import Header from "../../components/Header";
-import OrderPanel from "../../components/OrderPanel";
+import Header from "../../components/Header/Header";
+import OrderPanel from "../../components/OrderPanel/OrderPanel";
 
 function Home() {
   return (

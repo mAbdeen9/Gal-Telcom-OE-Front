@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logo/Logo";
 import classes from "./Login.module.css";
 import useInput from "../../hooks/use-input";
 import { useNavigate } from "react-router-dom";

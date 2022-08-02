@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import Border from "./Border";
-import Loading from "./Loading";
-import MessageCard from "./MessageCard";
-import OrderCard from "./OrderCard";
-import OrderCardNoSerial from "./OrderCardNoSerial";
+import Border from "../Border/Border";
+import Loading from "../Loading/Loading";
+import MessageCard from "../MessageCard/MessageCard";
+import OrderCard from "../OrderCard/OrderCard";
+import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
+
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {

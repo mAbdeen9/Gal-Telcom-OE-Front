@@ -1,6 +1,6 @@
 import React from "react";
-import Btn from "./Btn";
-import Gear from "./Gear";
+import Btn from "../Btn/Btn";
+import Gear from "../Gear/Gear";
 import classes from "./OrderCardNoSerial.module.css";
 
 function OrderCardNoSerial(props) {

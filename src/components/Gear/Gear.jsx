@@ -2,8 +2,8 @@ import React from "react";
 import classes from "./Gear.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { OrderSerialActions } from "./../store/OrderSerialSlice";
-import { OrderNoSerialActions } from "../store/OrderNoSerialSlice";
+import { OrderSerialActions } from "../../store/OrderSerialSlice";
+import { OrderNoSerialActions } from "../../store/OrderNoSerialSlice";
 import { useRef } from "react";
 
 const Gear = (props) => {
