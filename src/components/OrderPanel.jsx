@@ -10,6 +10,7 @@ import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
   const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice);
+  const OrderNoSerialSlice = useSelector((state) => state.OrderNoSerialSlice);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
@@ -30,9 +31,9 @@ const OrderPanel = () => {
 
   const handelSubmintNoSerial = (e) => {
     e.preventDefault();
-    if (OrderSerialSlice.length === 0) return;
+    if (OrderNoSerialSlice.length === 0) return;
     setIsLoading2((state) => !state);
-    console.log(OrderSerialSlice);
+    console.log(OrderNoSerialSlice);
   };
 
   return (

@@ -3,6 +3,7 @@ import classes from "./Gear.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { OrderSerialActions } from "./../store/OrderSerialSlice";
+import { OrderNoSerialActions } from "../store/OrderNoSerialSlice";
 import { useRef } from "react";
 
 const Gear = (props) => {
@@ -14,9 +15,12 @@ const Gear = (props) => {
     const selectedValue = {
       name: e.target.name,
       value: e.target.value === "--" ? null : e.target.value,
+      type: props.serial ? "serial" : "NoSerial",
     };
     console.log(selectedValue);
     if (props.serial) dispatch(OrderSerialActions.addToTheOrder(selectedValue));
+    if (props.noserial || props.many)
+      dispatch(OrderNoSerialActions.addToTheOrderNoSerial(selectedValue));
   };
 
   const selectedHandler = (e) => {
@@ -25,6 +29,12 @@ const Gear = (props) => {
     if (!selected) {
       if (props.serial)
         dispatch(OrderSerialActions.removeNotSeltected({ name: e.target.id }));
+      if (props.noserial || props.many)
+        dispatch(
+          OrderNoSerialActions.removeNotSeltectedOrderNoSerial({
+            name: e.target.id,
+          })
+        );
     }
   };
 
