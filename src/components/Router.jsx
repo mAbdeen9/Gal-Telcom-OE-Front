@@ -5,6 +5,7 @@ import Login from "../pages/login/Login";
 import Home from "../pages/home/Home";
 import Page404 from "../pages/pageNotFound/Page404";
 import { useSelector } from "react-redux";
+import MyOrders from "../pages/MyOrders/MyOrders";
 
 function Router() {
   //
@@ -13,11 +14,12 @@ function Router() {
   return (
     <Fragment>
       <Routes>
-        {!token && <Route path="*" element={<Navigate to="/login" />} />}
-        {!token && <Route path="/login" element={<Login />} />}
         {token && <Route path="/home" element={<Home />} />}
         {token && <Route path="/login" element={<Navigate to="/home" />} />}
-        <Route path="*" element={<Page404 />} />
+        {token && <Route path="/my-orders" element={<MyOrders />} />}
+        {token && <Route path="*" element={<Page404 />} />}
+        {!token && <Route path="*" element={<Navigate to="/login" />} />}
+        {!token && <Route path="/login" element={<Login />} />}
       </Routes>
     </Fragment>
   );
