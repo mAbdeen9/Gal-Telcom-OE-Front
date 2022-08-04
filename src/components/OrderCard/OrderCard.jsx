@@ -11,7 +11,7 @@ function OrderCard(props) {
         <Gear serial={true} id="B35" lable="נתב דגם B35" name="B35" />
         <Gear
           serial={true}
-          id="vv5823"
+          id="VV5823"
           lable="נתב דגם AC VV5823"
           name="VV5823"
         />

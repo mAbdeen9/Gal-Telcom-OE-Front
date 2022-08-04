@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Border from "../Border/Border";
+import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import MessageCard from "../MessageCard/MessageCard";
 import OrderCard from "../OrderCard/OrderCard";
@@ -38,45 +39,43 @@ const OrderPanel = () => {
   };
 
   return (
-    <div className={`container-fluid   ${classes.mainPanel} `}>
-      <div className="container">
-        <div className={classes.boxPanel}>
-          <div>
-            <span className={classes.gradienText}>הזמנת ציוד בקליק </span>
-          </div>
-          <div className={classes.sizeRocket}>
-            <span role="img" aria-label="emoji">
-              📦 🚀
-            </span>
-          </div>
-          {!response ? (
-            isLoading ? (
-              <div className={classes.loadingBox}>
-                <Loading />
-              </div>
-            ) : (
-              <OrderCard onSubmitCard={handelSubmintSerial} />
-            )
-          ) : (
-            <MessageCard message={messageFromServer} />
-          )}
-          <br />
-          <Border />
-          <div className={classes.sizeRocket}>
-            <span role="img" aria-label="emoji">
-              ⚙️ 🛠
-            </span>
-          </div>
-          {isLoading2 ? (
+    <Container>
+      <div className={classes.boxPanel}>
+        <div>
+          <span className={classes.gradienText}>הזמנת ציוד בקליק </span>
+        </div>
+        <div className={classes.sizeRocket}>
+          <span role="img" aria-label="emoji">
+            📦 🚀
+          </span>
+        </div>
+        {!response ? (
+          isLoading ? (
             <div className={classes.loadingBox}>
               <Loading />
             </div>
           ) : (
-            <OrderCardNoSerial onSubmitCard={handelSubmintNoSerial} />
-          )}
+            <OrderCard onSubmitCard={handelSubmintSerial} />
+          )
+        ) : (
+          <MessageCard message={messageFromServer} />
+        )}
+        <br />
+        <Border />
+        <div className={classes.sizeRocket}>
+          <span role="img" aria-label="emoji">
+            ⚙️ 🛠
+          </span>
         </div>
+        {isLoading2 ? (
+          <div className={classes.loadingBox}>
+            <Loading />
+          </div>
+        ) : (
+          <OrderCardNoSerial onSubmitCard={handelSubmintNoSerial} />
+        )}
       </div>
-    </div>
+    </Container>
   );
 };
 

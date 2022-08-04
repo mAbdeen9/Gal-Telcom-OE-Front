@@ -2,6 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
+const timeAndDate = () => {
+  const today = new Date();
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + " " + time;
+  return dateTime;
+};
+
 const OrderNoSerialSlice = createSlice({
   name: "OrderNoSerial",
   initialState,
@@ -14,7 +24,7 @@ const OrderNoSerialSlice = createSlice({
         }
       });
 
-      state.push(action.payload);
+      state.push({ ...action.payload, dateTime: timeAndDate() });
     },
     // remove from the state when  unselect checkbox
     removeNotSeltectedOrderNoSerial(state, action) {

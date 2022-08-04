@@ -1,0 +1,12 @@
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  padding: 75px;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 700;
+}
