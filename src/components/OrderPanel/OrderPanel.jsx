@@ -1,23 +1,30 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { OrderNoSerialActions } from "../../store/OrderNoSerialSlice";
+import { OrderSerialActions } from "../../store/OrderSerialSlice";
 import Border from "../Border/Border";
 import Container from "../Container/Container";
 import Loading from "../Loading/Loading";
 import MessageCard from "../MessageCard/MessageCard";
 import OrderCard from "../OrderCard/OrderCard";
 import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
-
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
   const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice);
   const OrderNoSerialSlice = useSelector((state) => state.OrderNoSerialSlice);
-
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const [response, setResponse] = useState(null);
   const [messageFromServer, setMessageFromServer] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(OrderSerialActions.reset());
+    dispatch(OrderNoSerialActions.reset());
+  }, []);
 
   const handelSubmintSerial = (e) => {
     e.preventDefault();

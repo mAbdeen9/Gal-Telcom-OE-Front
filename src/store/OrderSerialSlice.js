@@ -8,7 +8,7 @@ const timeAndDate = () => {
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   const time =
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  const dateTime = date + " " + time;
+  const dateTime = date + " / " + time;
   return dateTime;
 };
 
@@ -26,7 +26,7 @@ const OrderSerialSlice = createSlice({
 
       state.push({ ...action.payload, dateTime: timeAndDate() });
     },
-    // remove from the state when  unselect checkbox
+    // remove from the cart when  unselect checkbox
     removeNotSeltected(state, action) {
       state.forEach((order, i) => {
         if (order.name === action.payload.name) {
@@ -34,6 +34,8 @@ const OrderSerialSlice = createSlice({
         }
       });
     },
+    //rest cart when mounting page
+    reset: () => initialState,
   },
 });
 
