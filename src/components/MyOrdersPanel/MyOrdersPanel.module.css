@@ -1,12 +1,120 @@
 .box {
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   gap: 20px;
-  padding: 75px;
+  padding-top: 77px;
   color: white;
   font-family: "Varela Round", sans-serif;
   font-weight: 700;
+}
+
+.serial_box {
+  padding-top: 50px;
+  padding-bottom: 18px;
+  text-align: center;
+  width: 70%;
+  max-height: 400px;
+  background-color: #2a2e36;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.line {
+  width: 93%;
+  min-height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: #12181b;
+  border-radius: 5px;
+}
+
+.btnStyle {
+  padding: 5px 20px;
+  border: 2px solid black;
+  border-radius: 3px;
+  background-color: #0bc371;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btnStyle:hover {
+  border: 2px solid white;
+}
+
+.t1 {
+  background-color: #4e5556;
+  color: #cbff8f;
+  font-weight: 400;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.sizeRocket {
+  font-size: 2rem;
+}
+
+@media (max-width: 780px) {
+  .serial_box {
+    width: 95%;
+  }
+  .btnStyle {
+    padding: 0px 12px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #0bc371;
+    color: white;
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .btnStyle:hover {
+    border: 2px solid white;
+  }
+}
+
+@media (max-width: 350px) {
+  .line {
+    width: 97%;
+    font-size: 12px;
+  }
+  .btnStyle {
+    font-size: 13px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-button {
+  background-color: #666;
+}
+::-webkit-scrollbar-track {
+  background-color: #646464;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #12181b;
+}
+::-webkit-scrollbar-thumb {
+  height: 50px;
+  background-color: #666;
+}
+::-webkit-scrollbar-corner {
+  background-color: #646464;
+}
+::-webkit-resizer {
+  background-color: #666;
 }

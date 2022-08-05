@@ -13,6 +13,10 @@ import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
+  //Just for Testing you should remove this code
+  const OrderSerialSliceFull = useSelector((state) => state.OrderSerialSlice);
+
+  //
   const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice.order);
   const OrderNoSerialSlice = useSelector(
     (state) => state.OrderNoSerialSlice.order
@@ -32,7 +36,7 @@ const OrderPanel = () => {
     e.preventDefault();
     if (OrderSerialSlice.length === 0) return;
     setIsLoading((state) => !state);
-    console.log(OrderSerialSlice);
+    console.log(OrderSerialSliceFull);
     setTimeout(() => {
       setResponse(true);
       setMessageFromServer("קיבלנו את בקשתך בהצלחה 👍");
