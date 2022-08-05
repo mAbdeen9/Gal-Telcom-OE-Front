@@ -41,8 +41,12 @@ const Login = () => {
     setPhoneIsTouched(true);
     setpasswordIsTouched(true);
     if (!formIsVaild) return;
-    console.log({ phoneNumber: phoneValue, password: passwordValue });
-    dispatch(authActions.validator("1234"));
+    const inputValues = { phoneNumber: phoneValue, password: passwordValue };
+    console.log(inputValues);
+
+    dispatch(
+      authActions.validator({ token: "1234token", id: "22", name: "מוחמד" })
+    );
     navigate("/home", { replace: true });
     resetPhone();
     resetPassword();

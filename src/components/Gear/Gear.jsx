@@ -1,23 +1,30 @@
 import React from "react";
 import classes from "./Gear.module.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { OrderSerialActions } from "../../store/OrderSerialSlice";
 import { OrderNoSerialActions } from "../../store/OrderNoSerialSlice";
 import { useRef } from "react";
 
 const Gear = (props) => {
   const dispatch = useDispatch();
-  const [selected, setSelected] = useState(true);
   const checkBoxRef = useRef();
+  const [selected, setSelected] = useState(true);
+  const { name, id } = useSelector((state) => state.auth);
 
   const OrderHandler = (e) => {
     const selectedValue = {
-      name: e.target.name,
-      value: e.target.value === "--" ? null : e.target.value,
-      type: props.serial ? "serial" : "NoSerial",
+      userDetails: {
+        name,
+        id,
+      },
+      orderDetails: {
+        name: e.target.name,
+        value: e.target.value === "--" ? null : e.target.value,
+        type: props.serial ? "serial" : "NoSerial",
+      },
     };
-    console.log(selectedValue);
+
     if (props.serial) dispatch(OrderSerialActions.addToTheOrder(selectedValue));
     if (props.noserial || props.many)
       dispatch(OrderNoSerialActions.addToTheOrderNoSerial(selectedValue));
@@ -28,11 +35,13 @@ const Gear = (props) => {
     setSelected((state) => !state);
     if (!selected) {
       if (props.serial)
-        dispatch(OrderSerialActions.removeNotSeltected({ name: e.target.id }));
+        dispatch(
+          OrderSerialActions.removeNotSeltected({ name: e.target.name })
+        );
       if (props.noserial || props.many)
         dispatch(
           OrderNoSerialActions.removeNotSeltectedOrderNoSerial({
-            name: e.target.id,
+            name: e.target.name,
           })
         );
     }
@@ -42,8 +51,13 @@ const Gear = (props) => {
     <div className={classes.line}>
       <div>
         <span>
-          <input id={props.id} type="checkbox" onClick={selectedHandler} />-
-          <span> </span>
+          <input
+            name={props.name}
+            id={props.id}
+            type="checkbox"
+            onClick={selectedHandler}
+          />
+          -<span> </span>
           <label htmlFor={props.id}> {props.lable} </label>
         </span>
       </div>

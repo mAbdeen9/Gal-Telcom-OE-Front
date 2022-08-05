@@ -12,106 +12,107 @@ function OrderCardNoSerial(props) {
           many={true}
           id="fiber-20"
           lable="FTTH drop fiber L=20"
-          name="fiber-20"
+          name="FTTH drop fiber L=20"
         />
         <Gear
           many={true}
           id="fiber-30"
           lable="FTTH drop fiber L=30"
-          name="fiber-30"
-        />{" "}
+          name="FTTH drop fiber L=30"
+        />
         <Gear
           many={true}
           id="fiber-40"
           lable="FTTH drop fiber L=40"
-          name="fiber-40"
-        />{" "}
+          name="FTTH drop fiber L=40"
+        />
         <Gear
           many={true}
           id="fiber-50"
           lable="FTTH drop fiber L=50"
-          name="fiber-50"
+          name="FTTH drop fiber L=50"
         />
         <Gear
           many={true}
           id="connector-fiber-s/s"
           lable="מגשר אופטי קטן/קטן"
-          name="connector-fiber-s/s"
+          name="מגשר אופטי קטן/קטן"
         />
         <Gear
           many={true}
           id="connector-fiber-s/b"
           lable="מגשר אופטי קטן/גדול"
-          name="connector-fiber-s/b"
+          name="מגשר אופטי קטן/גדול"
         />
         <Gear
           many={true}
           id="connector-fiber-green"
           lable="קונקטורים אופטי"
-          name="connector-fiber-green"
+          name="קונקטורים אופטי"
         />
-        <Gear many={true} id="nose-socket" lable="שקע אף" name="nose-socket" />
-        <Gear
-          many={true}
-          id="socket-tel1"
-          lable="שקע טלפון"
-          name="socket-tel1"
-        />
+        <Gear many={true} id="nose-socket" lable="שקע אף" name="שקע אף" />
+        <Gear many={true} id="socket-tel1" lable="שקע טלפון" name="שקע טלפון" />
         <Gear
           many={true}
           id="socket-tel2"
           lable="שקע טלפון כפול"
-          name="socket-tel2"
+          name="שקע טלפון כפול"
         />
         <Gear
           many={true}
           id="socket-tel3"
           lable="שקע טלפון גוויס"
-          name="socket-tel3"
+          name="שקע טלפון גוויס"
         />
         <Gear
           noserial={true}
           id="CAT5E"
           lable="כבל רשת 100 מטר CAT5E"
-          name="CAT5E"
+          name="כבל רשת 100 מטר CAT5E"
         />
         <Gear
           noserial={true}
           id="RG59"
           lable="כבל 100 מטר Coax RG59"
-          name="RG59"
+          name="כבל 100 מטר Coax RG59"
         />
         <Gear
           noserial={true}
           id="DROP"
           lable="כבל  100 מטר דרופ 4 גידים"
-          name="DROP"
+          name="כבל  100 מטר דרופ 4 גידים"
         />
         <Gear
           noserial={true}
           id="RG6-Connectors"
           lable="חבילת קונקטורים RG6"
-          name="RG6-Connectors"
+          name="חבילת קונקטורים RG6"
         />
         <Gear
           noserial={true}
           id="RG59-Connectors"
           lable="חבילת קונקטורים RG59"
-          name="RG59-Connectors"
+          name="חבילת קונקטורים RG59"
         />
         <Gear
           noserial={true}
           id="SPLICE-COAX"
           lable="חבילת Splice-Coax"
-          name="SPLICE-COAX"
+          name="חבילת Splice-Coax"
+        />
+        <Gear
+          noserial={true}
+          id="Clipsim"
+          lable="חבילת קליפסים"
+          name="חבילת קליפסים"
         />
         <Gear
           noserial={true}
           id="ISOLERBAND"
           lable="איזולירבנד"
-          name="ISOLERBAND"
+          name="איזולירבנד"
         />
-        <Gear noserial={true} id="Silcon" lable="סיליקון" name="Silcon" />
+        <Gear noserial={true} id="Silcon" lable="סיליקון" name="סיליקון" />
         <br />
         <Btn text="שלח" />
       </form>

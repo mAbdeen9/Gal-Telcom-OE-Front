@@ -13,8 +13,10 @@ import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
-  const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice);
-  const OrderNoSerialSlice = useSelector((state) => state.OrderNoSerialSlice);
+  const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice.order);
+  const OrderNoSerialSlice = useSelector(
+    (state) => state.OrderNoSerialSlice.order
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const [response, setResponse] = useState(null);

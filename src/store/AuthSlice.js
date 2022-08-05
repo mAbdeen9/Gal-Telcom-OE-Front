@@ -1,17 +1,17 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
-const initialState = { token: null };
+const initialState = { token: null, id: null, name: null };
 
 const AuthSlice = createSlice({
   name: "Auth",
   initialState,
   reducers: {
     validator(state, action) {
-      state.token = action.payload || null;
+      state.token = action.payload.token || null;
+      state.id = action.payload.id || null;
+      state.name = action.payload.name || null;
     },
-    logout(state) {
-      state.token = null;
-    },
+    logout: () => initialState,
   },
 });
 

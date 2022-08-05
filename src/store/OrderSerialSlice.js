@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
-
 const timeAndDate = () => {
   const today = new Date();
   const date =
@@ -12,25 +10,35 @@ const timeAndDate = () => {
   return dateTime;
 };
 
+const initialState = {
+  id: "",
+  username: "",
+  dateTime: "",
+  orderType: "Serial",
+  order: [],
+};
+
 const OrderSerialSlice = createSlice({
   name: "OrderSerial",
   initialState,
   reducers: {
     addToTheOrder(state, action) {
       //Checking if some tool selected more than once i will accepet just the last one
-      state.forEach((order, i) => {
-        if (order.name === action.payload.name) {
-          state.splice(i, 1);
+      state.order.forEach((order, i) => {
+        if (order.name === action.payload.orderDetails.name) {
+          state.order.splice(i, 1);
         }
       });
-
-      state.push({ ...action.payload, dateTime: timeAndDate() });
+      state.id = action.payload.userDetails.id;
+      state.username = action.payload.userDetails.name;
+      state.dateTime = timeAndDate();
+      state.order.push({ ...action.payload.orderDetails });
     },
     // remove from the cart when  unselect checkbox
     removeNotSeltected(state, action) {
-      state.forEach((order, i) => {
+      state.order.forEach((order, i) => {
         if (order.name === action.payload.name) {
-          state.splice(i, 1);
+          state.order.splice(i, 1);
         }
       });
     },
