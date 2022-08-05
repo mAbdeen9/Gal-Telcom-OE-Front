@@ -47,9 +47,9 @@ function MyOrdersPanel() {
         <span className={classes.t1}>הזמנות סריאלי</span>
         <div className={classes.serial_box}>
           <div className={classes.line}>
-            <div>תאריך : {data.dateTime.split("/")[0]}</div>
+            <div>תאריך 1: {data.dateTime.split("/")[0]}</div>
             <div>
-              <button className={classes.btnStyle}>פרטי 1הזמנה</button>
+              <button className={classes.btnStyle}>פרטי הזמנה</button>
             </div>
           </div>
           <div className={classes.line}>
@@ -69,7 +69,7 @@ function MyOrdersPanel() {
             <div>
               <button className={classes.btnStyle}>פרטי הזמנה</button>
             </div>
-          </div>
+          </div>{" "}
           <div className={classes.line}>
             <div>תאריך : {data.dateTime.split("/")[0]}</div>
             <div>

@@ -13,15 +13,14 @@
 }
 
 .serial_box {
-  padding-top: 50px;
-  padding-bottom: 18px;
   text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 70%;
-  max-height: 400px;
+  height: 250px;
   background-color: #2a2e36;
   border-radius: 4px;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 10px;
   flex-direction: column;
