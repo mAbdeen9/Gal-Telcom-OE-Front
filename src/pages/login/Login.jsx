@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
 import image from "../../assets/undraw_Login_re_4vu2.png";
+import { useState } from "react";
 const Login = () => {
   //
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // eslint-disable-next-line
+  const [errorMsg, setErromsg] = useState(false);
 
   const {
     enterdValue: phoneValue,
@@ -43,11 +46,16 @@ const Login = () => {
     if (!formIsVaild) return;
     const inputValues = { phoneNumber: phoneValue, password: passwordValue };
     console.log(inputValues);
-
+    // if (!err) setErromsg(true);
     dispatch(
-      authActions.validator({ token: "1234token", id: "22", name: "מוחמד" })
+      authActions.validator({
+        token: "null",
+        id: "22",
+        name: "מוחמד",
+        role: "admin",
+      })
     );
-    navigate("/home", { replace: true });
+    navigate("/admin_panel", { replace: true });
     resetPhone();
     resetPassword();
   };
@@ -109,6 +117,9 @@ const Login = () => {
             )}
           </div>
           <button className={classes.loginBtn}>המשך</button>
+          {errorMsg && (
+            <span className={classes.error}>סיסמה או מספר טלפון שגויים</span>
+          )}
           <div>
             <img className={classes.imgLogin} src={image} alt="imgLogin" />
           </div>

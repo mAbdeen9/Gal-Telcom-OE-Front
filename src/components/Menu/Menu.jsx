@@ -4,11 +4,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { authActions } from "../../store/AuthSlice";
 import classes from "./Menu.module.css";
 
-const Menu = () => {
+const Menu = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname);
+
   const logoutHandler = () => {
     dispatch(authActions.logout());
   };
@@ -33,18 +33,20 @@ const Menu = () => {
               </span>
             </li>
             <br />
-            <li onClick={myOrdersHandler}>
-              {location.pathname === "/home" ? "הזמנות שלי" : "דף הבית"}
-              <span className={classes.menuBtns}>
-                <i
-                  className={
-                    location.pathname === "/home"
-                      ? "bi bi-bag-check"
-                      : "bi bi-house"
-                  }
-                ></i>
-              </span>
-            </li>
+            {!props.role && (
+              <li onClick={myOrdersHandler}>
+                {location.pathname === "/home" ? "הזמנות שלי" : "דף הבית"}
+                <span className={classes.menuBtns}>
+                  <i
+                    className={
+                      location.pathname === "/home"
+                        ? "bi bi-bag-check"
+                        : "bi bi-house"
+                    }
+                  ></i>
+                </span>
+              </li>
+            )}
           </ul>
         </div>
       </div>

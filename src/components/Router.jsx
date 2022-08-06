@@ -6,10 +6,11 @@ import Home from "../pages/home/Home";
 import Page404 from "../pages/pageNotFound/Page404";
 import { useSelector } from "react-redux";
 import MyOrders from "../pages/MyOrders/MyOrders";
+import Admin from "../pages/admin/Admin";
 
 function Router() {
   //
-  const token = useSelector((state) => state.auth.token);
+  const { token, role } = useSelector((state) => state.auth);
 
   return (
     <Fragment>
@@ -17,6 +18,7 @@ function Router() {
         {token && <Route path="/home" element={<Home />} />}
         {token && <Route path="/login" element={<Navigate to="/home" />} />}
         {token && <Route path="/my-orders" element={<MyOrders />} />}
+        {token && role && <Route path="/admin_panel" element={<Admin />} />}
         {token && <Route path="*" element={<Page404 />} />}
         {!token && <Route path="*" element={<Navigate to="/login" />} />}
         {!token && <Route path="/login" element={<Login />} />}

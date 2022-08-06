@@ -1,6 +1,6 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
-const initialState = { token: null, id: null, name: null };
+const initialState = { token: null, id: null, name: null, role: null };
 
 const AuthSlice = createSlice({
   name: "Auth",
@@ -10,6 +10,7 @@ const AuthSlice = createSlice({
       state.token = action.payload.token || null;
       state.id = action.payload.id || null;
       state.name = action.payload.name || null;
+      state.role = action.payload.role || null;
     },
     logout: () => initialState,
   },

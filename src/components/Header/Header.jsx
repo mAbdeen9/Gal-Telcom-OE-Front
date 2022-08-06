@@ -4,12 +4,16 @@ import { Fragment } from "react";
 import classes from "./Header.module.css";
 import Logo from "../Logo/Logo";
 import Menu from "../Menu/Menu";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const user = useSelector((state) => state.auth);
+
   const toggleBurger = () => {
     setShowMenu((state) => !state);
   };
+
   return (
     <Fragment>
       <div className={`container-fluid ${classes.navBox}`}>
@@ -22,7 +26,7 @@ const Header = () => {
               <span className={classes.emoji} role="img" aria-label="hi emoji">
                 👤
               </span>
-              ברוך הבא מוחמד
+              ברוך הבא {user.name}
             </div>
             <div className={classes.box}>
               <Logo class={classes.logo} />
@@ -30,7 +34,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {showMenu && <Menu></Menu>}
+      {showMenu && <Menu role={user.role}></Menu>}
     </Fragment>
   );
 };
