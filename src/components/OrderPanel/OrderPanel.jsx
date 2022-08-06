@@ -15,6 +15,9 @@ import classes from "./OrderPanel.module.css";
 const OrderPanel = () => {
   //Just for Testing you should remove this code ⚠️⚠️⚠️⚠️⚠️⚠️
   const OrderSerialSliceFull = useSelector((state) => state.OrderSerialSlice);
+  const OrderNoSerialSliceFull = useSelector(
+    (state) => state.OrderNoSerialSlice
+  );
 
   //
   const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice.order);
@@ -48,7 +51,7 @@ const OrderPanel = () => {
     e.preventDefault();
     if (OrderNoSerialSlice.length === 0) return;
     setIsLoading2((state) => !state);
-    console.log(OrderNoSerialSlice);
+    console.log(OrderNoSerialSliceFull);
   };
 
   return (
