@@ -13,7 +13,7 @@ import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
 
 const OrderPanel = () => {
-  //Just for Testing you should remove this code
+  //Just for Testing you should remove this code ⚠️⚠️⚠️⚠️⚠️⚠️
   const OrderSerialSliceFull = useSelector((state) => state.OrderSerialSlice);
 
   //

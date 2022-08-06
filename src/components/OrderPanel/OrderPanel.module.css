@@ -33,6 +33,10 @@
 
 .loadingBox {
   padding: 4rem;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 780px) {

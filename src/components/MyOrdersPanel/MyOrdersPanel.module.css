@@ -61,6 +61,12 @@
   border-radius: 4px;
 }
 
+.modal_style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .sizeRocket {
   font-size: 2rem;
 }

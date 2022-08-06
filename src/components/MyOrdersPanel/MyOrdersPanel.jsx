@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from "react";
 import Border from "../Border/Border";
 import Container from "../Container/Container";
+import Modal from "../Modal/Modal";
 import classes from "./MyOrdersPanel.module.css";
 
 const data = [
@@ -35,8 +37,38 @@ const data = [
 ];
 
 function MyOrdersPanel() {
+  //
+  const [showMoadl, setShowMoadl] = useState(false);
+  const [modalJsx, setModalJsx] = useState([]);
+  const modalHandler = (data) => {
+    setShowMoadl((state) => !state);
+    setModalJsx(data);
+  };
+
+  const handleClickBackDrop = () => setShowMoadl((state) => !state);
+
   return (
     <Container>
+      {showMoadl && (
+        <Modal handleClick={handleClickBackDrop}>
+          {modalJsx.map((list, index) => {
+            return (
+              <div className={classes.modal_style} key={index}>
+                <div>- {list.name} </div>
+                <div>
+                  {" "}
+                  &nbsp;{" "}
+                  <span role="img" aria-label="arrow img">
+                    ⬅️
+                  </span>{" "}
+                  &nbsp;{" "}
+                </div>
+                <div> {list.value} </div>
+              </div>
+            );
+          })}
+        </Modal>
+      )}
       <div className={classes.box}>
         <>
           ההזמנות ממוינות לפי תאריך ההזמנה , החל מההזמנה האחרונה , (סדר יורד)
@@ -48,12 +80,19 @@ function MyOrdersPanel() {
         </>
         <span className={classes.t1}>הזמנות סריאלי</span>
         <div className={classes.serial_box}>
-          {data.map((oreder, index) => {
+          {data.map((order, index) => {
             return (
               <div key={index} className={classes.line}>
-                <div>תאריך : {oreder.dateTime.split("/")[0]}</div>
+                <div>תאריך : {order.dateTime.split("/")[0]}</div>
                 <div>
-                  <button className={classes.btnStyle}>פרטי הזמנה</button>
+                  <button
+                    onClick={() => {
+                      modalHandler(order.order);
+                    }}
+                    className={classes.btnStyle}
+                  >
+                    פרטי הזמנה
+                  </button>
                 </div>
               </div>
             );
