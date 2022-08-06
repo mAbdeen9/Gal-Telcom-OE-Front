@@ -5,7 +5,7 @@ import useInput from "../../hooks/use-input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
-
+import image from "../../assets/undraw_Login_re_4vu2.png";
 const Login = () => {
   //
   const navigate = useNavigate();
@@ -110,11 +110,7 @@ const Login = () => {
           </div>
           <button className={classes.loginBtn}>המשך</button>
           <div>
-            <img
-              className={classes.imgLogin}
-              src="/undraw_Login_re_4vu2.png"
-              alt="imgLogin"
-            />
+            <img className={classes.imgLogin} src={image} alt="imgLogin" />
           </div>
         </form>
       </div>
