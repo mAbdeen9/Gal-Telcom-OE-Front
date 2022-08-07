@@ -56,6 +56,8 @@ const Login = () => {
       })
     );
     navigate("/admin_panel", { replace: true });
+    // navigate("/home", { replace: true });
+
     resetPhone();
     resetPassword();
   };
