@@ -1,10 +1,23 @@
 .admin_panel_main {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   width: 99%;
   flex-wrap: wrap;
-  min-height: 50vh;
+  gap: 30px;
+  margin-top: 40px;
+}
 
-  margin-top: 50px;
+.t1 {
+  background-color: #4e5556;
+  color: #cbff8f;
+  font-weight: 400;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.emoji {
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
 }

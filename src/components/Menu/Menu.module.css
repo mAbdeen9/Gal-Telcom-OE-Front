@@ -13,6 +13,7 @@
   border-bottom-right-radius: 1rem;
   padding: 2rem 0;
   font-weight: bold;
+  font-family: "Varela Round", sans-serif;
 }
 
 @keyframes example {
