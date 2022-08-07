@@ -159,7 +159,7 @@ function MyOrdersPanel() {
     setModalJsx(data);
   };
 
-  const handleClickBackDrop = () => setShowMoadl((state) => !state);
+  const handleClickBackDrop = (e) => setShowMoadl((state) => !state);
 
   return (
     <Container>
