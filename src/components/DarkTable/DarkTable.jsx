@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
+import ModalTable from "../Modal/ModalTable";
 import classes from "./DarkTable.module.css";
 
 const dataFromApi = [
@@ -39,8 +40,22 @@ const dataFromApi = [
 ];
 
 function DarkTable() {
+  const [showModal, setShowModal] = useState(false);
+
+  const showModalHadnler = () => setShowModal((state) => !state);
+
+  const tableRowHandler = (order) => {
+    console.log(order);
+    setShowModal((state) => !state);
+  };
+
   return (
     <Table striped bordered hover variant="dark" className={classes.table_main}>
+      {showModal && (
+        <ModalTable>
+          <div onClick={showModalHadnler}>Test</div>
+        </ModalTable>
+      )}
       <thead>
         <tr>
           <th>#</th>
@@ -52,7 +67,12 @@ function DarkTable() {
       <tbody>
         {dataFromApi.map((orders, index) => {
           return (
-            <tr key={index}>
+            <tr
+              key={index}
+              onClick={() => {
+                tableRowHandler(orders);
+              }}
+            >
               <td>{index + 1}</td>
               <td>{orders.username}</td>
               <td>{orders.id}</td>

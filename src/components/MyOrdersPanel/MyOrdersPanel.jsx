@@ -150,18 +150,17 @@ const NoSerialData = [
 ];
 
 function MyOrdersPanel() {
-  //
-
   const [showMoadl, setShowMoadl] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
   const [dateOfOrder, setDateOfOrder] = useState("");
+
   const modalHandler = (data, date) => {
     setShowMoadl((state) => !state);
     setDateOfOrder(date);
     setModalJsx(data);
   };
 
-  const handleClickBackDrop = (e) => setShowMoadl((state) => !state);
+  const handleClickBackDrop = () => setShowMoadl((state) => !state);
 
   return (
     <Container>
@@ -173,12 +172,11 @@ function MyOrdersPanel() {
               <div className={classes.modal_style} key={index}>
                 <div>- {list.name} </div>
                 <div>
-                  {" "}
-                  &nbsp;{" "}
+                  &nbsp;
                   <span role="img" aria-label="arrow img">
                     ⬅️
-                  </span>{" "}
-                  &nbsp;{" "}
+                  </span>
+                  &nbsp;
                 </div>
                 <div> ( {list.value} )</div>
               </div>
