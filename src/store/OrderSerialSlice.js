@@ -15,6 +15,7 @@ const initialState = {
   username: "",
   dateTime: "",
   orderType: "Serial",
+  orederStatus: "pending",
   order: [],
 };
 

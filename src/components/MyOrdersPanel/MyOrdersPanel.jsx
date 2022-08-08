@@ -11,6 +11,7 @@ const data = [
     username: "מוחמד",
     dateTime: "2022-8-5 / 10:41:51",
     orderType: "Serial",
+    orederStatus: "pending",
     order: [
       {
         name: "מודם סיבים NOKIA",
@@ -36,12 +37,13 @@ const data = [
   },
 ];
 
-const serialData = [
+const NoSerialData = [
   {
     id: "22",
     username: "מוחמד",
     dateTime: "2022-8-6 / 16:38:38",
     orderType: "noSerial",
+    orederStatus: "pending",
     order: [
       {
         name: "FTTH drop fiber L=20",
@@ -204,7 +206,11 @@ function MyOrdersPanel() {
                     onClick={() => {
                       modalHandler(order.order, order.dateTime.split("/")[0]);
                     }}
-                    className={classes.btnStyle}
+                    className={
+                      order.orederStatus === "pending"
+                        ? classes.pending
+                        : classes.btnStyle
+                    }
                   >
                     פרטי הזמנה
                   </button>
@@ -216,7 +222,7 @@ function MyOrdersPanel() {
         <Border />
         <span className={classes.t1}>הזמנות לא סריאלי</span>
         <div className={classes.serial_box}>
-          {serialData.map((order, index) => {
+          {NoSerialData.map((order, index) => {
             return (
               <div key={index} className={classes.line}>
                 <div>תאריך : {order.dateTime.split("/")[0]}</div>

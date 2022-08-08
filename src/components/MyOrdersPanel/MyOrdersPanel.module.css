@@ -49,6 +49,21 @@
   font-size: 1rem;
 }
 
+.pending {
+  background-color: #f29339;
+  padding: 5px 20px;
+  border: 2px solid black;
+  border-radius: 3px;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.pending:hover {
+  border: 2px solid white;
+}
+
 .btnStyle:hover {
   border: 2px solid white;
 }
@@ -79,15 +94,22 @@
     padding: 0px 12px;
     border: 2px solid black;
     border-radius: 10px;
-    background-color: #0bc371;
     color: white;
+    background-color: #0bc371;
     font-family: "Varela Round", sans-serif;
     font-weight: bold;
     font-size: 15px;
   }
 
-  .btnStyle:hover {
-    border: 2px solid white;
+  .pending {
+    padding: 0px 12px;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+    background-color: #f29339;
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
   }
 }
 
@@ -97,6 +119,10 @@
     font-size: 12px;
   }
   .btnStyle {
+    font-size: 13px;
+  }
+
+  .pending {
     font-size: 13px;
   }
 }
