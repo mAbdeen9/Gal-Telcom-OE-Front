@@ -1,33 +1,55 @@
 import React from "react";
+import classes from "./AdminGear.module.css";
 import { useRef } from "react";
 import { useState } from "react";
-import classes from "./AdminGear.module.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { CheckedOrderActions } from "../../store/CheckedOrder";
 
 function AdminGear(props) {
   const [checked, setChecked] = useState(true);
   const [value, setValue] = useState(props.value);
-
   const checkBoxRef = useRef();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(CheckedOrderActions.addToTheFinalOrder(selectOptionHadnler()));
+  }, [value, checked]);
 
   const increment = () => {
     setValue((state) => {
       return (state = +state + 1);
     });
-    selectOptionHadnler();
   };
 
   const decrement = () => {
+    if (+value < 2) return;
     setValue((state) => {
       return (state = +state - 1);
     });
-    selectOptionHadnler();
   };
 
   const inputChangeHadnler = () => setChecked((state) => !state);
-  const selectOptionHadnler = () => console.log(checkBoxRef.current.value);
+  const selectOptionHadnler = () => {
+    const orderDetails = {
+      name: props.name,
+      value: checkBoxRef.current.value,
+      type: props.type,
+    };
+
+    if (!checked) {
+      return {
+        name: props.name,
+        value: "--",
+        type: props.type,
+      };
+    }
+
+    return orderDetails;
+  };
 
   return (
-    <div>
+    <div onChange={selectOptionHadnler} className={classes}>
       <span>
         <input
           name={props.name}
@@ -43,13 +65,12 @@ function AdminGear(props) {
         name={props.name}
         id={props.name}
         disabled={!checked}
-        onChange={selectOptionHadnler}
         ref={checkBoxRef}
       >
         <option>{value}</option>
-        <option>--</option>
       </select>
       <span onClick={increment}>+</span>
+
       <span onClick={decrement}>-</span>
     </div>
   );

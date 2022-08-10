@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import AdminGear from "../AdminGear/AdminGear";
 import ModalTable from "../Modal/ModalTable";
 import classes from "./DarkTable.module.css";
@@ -34,12 +35,23 @@ const dataFromApi = [
 function DarkTable() {
   const [showModal, setShowModal] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
+  const [orderId, setOrderId] = useState({});
+  const checkOrder = useSelector((state) => state.CheckedOrder.order);
 
   const showModalHadnler = () => setShowModal((state) => !state);
+
   const tableRowHandler = (order, orders) => {
-    console.log(order);
-    setShowModal((state) => !state);
+    const { id, username, dateTime, orederStatus, orderType } = order;
+    setOrderId({ id, username, dateTime, orederStatus, orderType });
     setModalJsx(orders);
+    setShowModal((state) => !state);
+  };
+
+  const updateOrderHandler = () => {
+    const userInfo = orderId;
+    userInfo.orederStatus = "done";
+    userInfo.order = checkOrder;
+    console.log(userInfo);
   };
 
   return (
@@ -48,9 +60,15 @@ function DarkTable() {
         <ModalTable>
           {modalJsx.map((data, index) => {
             return (
-              <AdminGear key={index} name={data.name} value={data.value} />
+              <AdminGear
+                key={index}
+                type={data.type}
+                name={data.name}
+                value={data.value}
+              />
             );
           })}
+          <button onClick={updateOrderHandler}>Send</button>
           <button onClick={showModalHadnler}>Close</button>
         </ModalTable>
       )}
