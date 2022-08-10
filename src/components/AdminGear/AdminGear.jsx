@@ -13,6 +13,12 @@ function AdminGear(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    return () => {
+      dispatch(CheckedOrderActions.reset());
+    };
+  }, []);
+
+  useEffect(() => {
     dispatch(CheckedOrderActions.addToTheFinalOrder(selectOptionHadnler()));
   }, [value, checked]);
 

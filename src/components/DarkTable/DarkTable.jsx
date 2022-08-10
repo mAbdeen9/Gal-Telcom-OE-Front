@@ -30,6 +30,54 @@ const dataFromApi = [
       },
     ],
   },
+  {
+    id: "44",
+    username: "מוחמד",
+    dateTime: "2022-8-120 / 0:44:28",
+    orderType: "Serial",
+    orederStatus: "pending",
+    order: [
+      {
+        name: "נתב דגם AC 321",
+        value: "12",
+        type: "serial",
+      },
+      {
+        name: "3 סיבים דגם AIO",
+        value: "3",
+        type: "serial",
+      },
+      {
+        name: "נתב דגם B35",
+        value: "5",
+        type: "serial",
+      },
+    ],
+  },
+  {
+    id: "55",
+    username: "מוחמד",
+    dateTime: "2022-8-10 / 0:44:28",
+    orderType: "Serial",
+    orederStatus: "pending",
+    order: [
+      {
+        name: "נתב דגם AC asdz",
+        value: "60",
+        type: "serial",
+      },
+      {
+        name: "נתב סיבים דגם gdf",
+        value: "33",
+        type: "serial",
+      },
+      {
+        name: "נתב דגם B353",
+        value: "51",
+        type: "noser",
+      },
+    ],
+  },
 ];
 
 function DarkTable() {
