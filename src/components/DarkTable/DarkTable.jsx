@@ -116,8 +116,14 @@ function DarkTable() {
               />
             );
           })}
-          <button onClick={updateOrderHandler}>Send</button>
-          <button onClick={showModalHadnler}>Close</button>
+          <div className={classes.button_box}>
+            <button className={classes.done} onClick={updateOrderHandler}>
+              בוצע
+            </button>
+            <button className={classes.close} onClick={showModalHadnler}>
+              סגור
+            </button>
+          </div>
         </ModalTable>
       )}
       <thead>

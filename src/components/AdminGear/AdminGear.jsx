@@ -55,29 +55,40 @@ function AdminGear(props) {
   };
 
   return (
-    <div onChange={selectOptionHadnler} className={classes}>
-      <span>
-        <input
+    <div onChange={selectOptionHadnler} className={classes.Admin_gear_box}>
+      <div>
+        <span>
+          <input
+            name={props.name}
+            id={props.name}
+            type="checkbox"
+            checked={checked}
+            onChange={inputChangeHadnler}
+          />
+          -<span> </span>
+          <label htmlFor={props.name}> {props.name} </label>
+        </span>
+      </div>
+      <div>
+        <select
           name={props.name}
           id={props.name}
-          type="checkbox"
-          checked={checked}
-          onChange={inputChangeHadnler}
-        />
-        -<span> </span>
-        <label htmlFor={props.name}> {props.name} </label>
-      </span>
-      <select
-        name={props.name}
-        id={props.name}
-        disabled={!checked}
-        ref={checkBoxRef}
-      >
-        <option>{value}</option>
-      </select>
-      <span onClick={increment}>+</span>
+          disabled={!checked}
+          ref={checkBoxRef}
+          className={classes.select_box}
+        >
+          <option>{value}</option>
+        </select>
+      </div>
 
-      <span onClick={decrement}>-</span>
+      <div className={classes.emoji}>
+        <span role="img" aria-label="emoji" onClick={increment}>
+          +
+        </span>
+        <span role="img" aria-label="emoji" onClick={decrement}>
+          -
+        </span>
+      </div>
     </div>
   );
 }

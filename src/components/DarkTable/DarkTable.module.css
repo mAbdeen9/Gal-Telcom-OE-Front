@@ -3,3 +3,42 @@
   font-family: "Varela Round", sans-serif;
   font-weight: bold;
 }
+
+.done {
+  padding: 4px 16px;
+  border: none;
+  border-radius: 3px;
+  background-color: #0bc371;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  outline: none;
+}
+
+.done:hover {
+  color: black;
+}
+
+.close {
+  padding: 4px 16px;
+  border: none;
+  border-radius: 3px;
+  background-color: #f50057;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  outline: none;
+}
+
+.close:hover {
+  color: black;
+}
+
+.button_box {
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+}

@@ -1,0 +1,35 @@
+.Admin_gear_box {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.1rem;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+}
+.Admin_gear_box div {
+  width: calc(100% / 3);
+}
+.select_box {
+  text-align: center;
+}
+
+.emoji span {
+  font-size: 2rem;
+  cursor: pointer;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+@media (max-width: 780px) {
+  .Admin_gear_box {
+    gap: 0.4rem;
+    font-size: 13px;
+    padding: 0.1rem;
+    text-align: center;
+  }
+  .Admin_gear_box div {
+    width: auto;
+  }
+}
