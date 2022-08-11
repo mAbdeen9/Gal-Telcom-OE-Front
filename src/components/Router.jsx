@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Fragment } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "../pages/login/Login";
-import Home from "../pages/home/Home";
-import Page404 from "../pages/pageNotFound/Page404";
 import { useSelector } from "react-redux";
-import MyOrders from "../pages/MyOrders/MyOrders";
-import Admin from "../pages/admin/Admin";
+import PagesLoading from "./Loading/PagesLoading";
+
+const Login = React.lazy(() => import("../pages/login/Login"));
+const Home = React.lazy(() => import("../pages/home/Home"));
+const MyOrders = React.lazy(() => import("../pages/MyOrders/MyOrders"));
+const Admin = React.lazy(() => import("../pages/admin/Admin"));
+const Page404 = React.lazy(() => import("../pages/pageNotFound/Page404"));
 
 function Router() {
   //
@@ -14,15 +16,17 @@ function Router() {
 
   return (
     <Fragment>
-      <Routes>
-        {token && <Route path="/home" element={<Home />} />}
-        {token && <Route path="/login" element={<Navigate to="/home" />} />}
-        {token && <Route path="/my-orders" element={<MyOrders />} />}
-        {token && role && <Route path="/admin_panel" element={<Admin />} />}
-        {token && <Route path="*" element={<Page404 />} />}
-        {!token && <Route path="*" element={<Navigate to="/login" />} />}
-        {!token && <Route path="/login" element={<Login />} />}
-      </Routes>
+      <Suspense fallback={<PagesLoading />}>
+        <Routes>
+          {token && <Route path="/home" element={<Home />} />}
+          {token && <Route path="/login" element={<Navigate to="/home" />} />}
+          {token && <Route path="/my-orders" element={<MyOrders />} />}
+          {token && role && <Route path="/admin_panel" element={<Admin />} />}
+          {token && <Route path="*" element={<Page404 />} />}
+          {!token && <Route path="*" element={<Navigate to="/login" />} />}
+          {!token && <Route path="/login" element={<Login />} />}
+        </Routes>
+      </Suspense>
     </Fragment>
   );
 }
