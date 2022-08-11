@@ -84,6 +84,8 @@ function DarkTable() {
   const [showModal, setShowModal] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
   const [orderId, setOrderId] = useState({});
+  // eslint-disable-next-line
+  const [loading, setLoading] = useState(false);
   const checkOrder = useSelector((state) => state.CheckedOrder.order);
 
   const showModalHadnler = () => setShowModal((state) => !state);
@@ -100,6 +102,7 @@ function DarkTable() {
     userInfo.orederStatus = "done";
     userInfo.order = checkOrder;
     console.log(userInfo);
+    setShowModal((state) => !state);
   };
 
   return (
@@ -118,7 +121,7 @@ function DarkTable() {
           })}
           <div className={classes.button_box}>
             <button className={classes.done} onClick={updateOrderHandler}>
-              בוצע
+              {loading ? "טוען..." : "בוצע"}
             </button>
             <button className={classes.close} onClick={showModalHadnler}>
               סגור

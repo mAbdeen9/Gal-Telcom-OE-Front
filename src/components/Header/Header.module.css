@@ -5,7 +5,8 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  font-family: "Assistant", sans-serif;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
 }
 
 .nav {
