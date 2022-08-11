@@ -1,13 +1,23 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .main {
   font-family: "Varela Round", sans-serif;
   width: 100%;
   min-height: 100vh;
-  background: #606c88; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #3f4c6b,
-    #606c88
-  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: #606c88; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#3f4c6b),
+    to(#606c88)
+  );
+  background: -o-linear-gradient(left, #3f4c6b, #606c88);
   background: linear-gradient(
     to right,
     #3f4c6b,
