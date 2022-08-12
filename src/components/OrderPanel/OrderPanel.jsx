@@ -11,7 +11,6 @@ import MessageCard from "../MessageCard/MessageCard";
 import OrderCard from "../OrderCard/OrderCard";
 import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
-import Footer from "../Footer/Footer";
 
 const OrderPanel = () => {
   //Just for Testing you should remove this code ⚠️⚠️⚠️⚠️⚠️⚠️
@@ -92,7 +91,6 @@ const OrderPanel = () => {
           <OrderCardNoSerial onSubmitCard={handelSubmintNoSerial} />
         )}
       </div>
-      <Footer></Footer>
     </Container>
   );
 };

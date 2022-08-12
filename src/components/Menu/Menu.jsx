@@ -21,18 +21,49 @@ const Menu = (props) => {
     navigate("/home");
   };
 
+  const searchPageHandler = () => {
+    navigate("/search");
+  };
+
   return (
     <div className={`container-fluid ${classes.box}`}>
       <div className="container">
         <div>
           <ul>
+            {props.role && (
+              <li className={classes.admin_role} onClick={searchPageHandler}>
+                ראשי
+                <span className={classes.menuBtns}>
+                  <i className="bi bi-house"></i>
+                </span>
+              </li>
+            )}
+
+            {props.role && (
+              <li className={classes.admin_role} onClick={searchPageHandler}>
+                ניהול
+                <span className={classes.menuBtns}>
+                  <i className="bi bi-gear"></i>
+                </span>
+              </li>
+            )}
+
+            {props.role && (
+              <li className={classes.admin_role} onClick={searchPageHandler}>
+                חיפוש
+                <span className={classes.menuBtns}>
+                  <i className="bi bi-search"></i>
+                </span>
+              </li>
+            )}
+
             <li onClick={logoutHandler}>
               התנתק
               <span className={classes.menuBtns}>
                 <i className="bi bi-power"></i>
               </span>
             </li>
-            <br />
+
             {!props.role && (
               <li onClick={myOrdersHandler}>
                 {location.pathname === "/home" ? "הזמנות שלי" : "דף הבית"}

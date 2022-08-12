@@ -9,7 +9,7 @@
   position: absolute;
   z-index: 999;
   background-color: #2a2e34;
-  height: 160px;
+  height: 165px;
   width: 100%;
   color: white;
   font-size: 1.2rem;
@@ -23,23 +23,28 @@
   padding: 2rem 0;
   font-weight: bold;
   font-family: "Varela Round", sans-serif;
+  overflow: hidden;
+}
+
+.admin_role {
+  padding: 0.1rem 0;
 }
 
 @-webkit-keyframes example {
   from {
-    height: 100px;
+    height: 0px;
   }
   to {
-    height: 160px;
+    height: 165px;
   }
 }
 
 @keyframes example {
   from {
-    height: 100px;
+    height: 0px;
   }
   to {
-    height: 160px;
+    height: 165px;
   }
 }
 
