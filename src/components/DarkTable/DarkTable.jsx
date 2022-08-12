@@ -149,7 +149,8 @@ function DarkTable() {
     <Table striped bordered hover variant="dark" className={classes.table_main}>
       {showModal && (
         <ModalTable>
-          <h3>הזמנה עבור :{orderId.username} </h3>
+          <h3>הזמנה עבור : {orderId.username} </h3>
+          <h4>מחסן טכנאי : {orderId.id}</h4>
           {modalJsx.map((data, index) => {
             return (
               <AdminGear
