@@ -24,8 +24,29 @@
   animation: slide-down 300ms ease-out forwards;
 }
 
+.modal_table {
+  position: fixed;
+  top: 10vh;
+  left: 5%;
+  width: 90%;
+  background-color: #3c424a;
+  max-height: 350px;
+  overflow-y: scroll;
+  padding: 0.5rem;
+  border-radius: 13px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 1200;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  animation: slide-down 300ms ease-out forwards;
+}
+
 @media (min-width: 768px) {
   .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+  .modal_table {
     width: 40rem;
     left: calc(50% - 20rem);
   }
@@ -33,6 +54,9 @@
 
 @media (max-width: 350px) {
   .modal {
+    font-size: 12px;
+  }
+  .modal_table {
     font-size: 12px;
   }
 }
@@ -46,4 +70,27 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-button {
+  background-color: #666;
+}
+::-webkit-scrollbar-track {
+  background-color: #646464;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #12181b;
+}
+::-webkit-scrollbar-thumb {
+  height: 50px;
+  background-color: #666;
+}
+::-webkit-scrollbar-corner {
+  background-color: #646464;
+}
+::-webkit-resizer {
+  background-color: #666;
 }

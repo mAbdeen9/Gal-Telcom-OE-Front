@@ -52,11 +52,11 @@ const Login = () => {
         token: "null",
         id: "22",
         name: "מוחמד",
-        // role: "admin",
+        role: "admin",
       })
     );
-    // navigate("/admin_panel", { replace: true });
-    navigate("/home", { replace: true });
+    navigate("/admin_panel", { replace: true });
+    // navigate("/home", { replace: true });
 
     resetPhone();
     resetPassword();

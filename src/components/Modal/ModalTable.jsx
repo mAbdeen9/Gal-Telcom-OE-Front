@@ -7,7 +7,7 @@ import { useEffect } from "react";
 function ModalOverlay(props) {
   return (
     <div className={classes.backdrop}>
-      <div className={classes.modal}>
+      <div className={classes.modal_table}>
         <div>{props.children}</div>
       </div>
     </div>

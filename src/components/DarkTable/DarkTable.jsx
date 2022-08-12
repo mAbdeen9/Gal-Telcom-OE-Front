@@ -32,7 +32,7 @@ const dataFromApi = [
   },
   {
     id: "44",
-    username: "מוחמד",
+    username: "דל׳ך ךד",
     dateTime: "2022-8-120 / 0:44:28",
     orderType: "Serial",
     orederStatus: "pending",
@@ -56,13 +56,53 @@ const dataFromApi = [
   },
   {
     id: "55",
-    username: "מוחמד",
+    username: "כםםד ךככגד כ",
     dateTime: "2022-8-10 / 0:44:28",
     orderType: "Serial",
     orederStatus: "pending",
     order: [
       {
         name: "נתב דגם AC asdz",
+        value: "60",
+        type: "serial",
+      },
+      {
+        name: "נתב סיבים דגם gdf",
+        value: "33",
+        type: "serial",
+      },
+      {
+        name: "נתב דגם B353",
+        value: "51",
+        type: "noser",
+      },
+    ],
+  },
+
+  {
+    id: "55",
+    username: "כםםד ךככגד כ",
+    dateTime: "2022-8-10 / 0:44:28",
+    orderType: "Serial",
+    orederStatus: "pending",
+    order: [
+      {
+        name: "נתב דגם AC asdz",
+        value: "60",
+        type: "serial",
+      },
+      {
+        name: "23 סיבים דגם gdf",
+        value: "33",
+        type: "serial",
+      },
+      {
+        name: "נתבas דגם B353",
+        value: "51",
+        type: "noser",
+      },
+      {
+        name: "נתב absדגם AC asdz",
         value: "60",
         type: "serial",
       },
@@ -109,6 +149,7 @@ function DarkTable() {
     <Table striped bordered hover variant="dark" className={classes.table_main}>
       {showModal && (
         <ModalTable>
+          <h3>הזמנה עבור :{orderId.username} </h3>
           {modalJsx.map((data, index) => {
             return (
               <AdminGear

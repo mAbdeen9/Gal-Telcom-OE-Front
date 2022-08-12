@@ -36,6 +36,7 @@ function AdminGear(props) {
   };
 
   const inputChangeHadnler = () => setChecked((state) => !state);
+
   const selectOptionHadnler = () => {
     const orderDetails = {
       name: props.name,
