@@ -1,3 +1,26 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-button {
+  background-color: #666;
+}
+::-webkit-scrollbar-track {
+  background-color: #646464;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #12181b;
+}
+::-webkit-scrollbar-thumb {
+  height: 50px;
+  background-color: #666;
+}
+::-webkit-scrollbar-corner {
+  background-color: #646464;
+}
+::-webkit-resizer {
+  background-color: #666;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

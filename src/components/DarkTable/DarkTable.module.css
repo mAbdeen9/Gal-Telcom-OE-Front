@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .table_main {
   cursor: pointer;
   font-family: "Varela Round", sans-serif;
@@ -38,7 +45,10 @@
 
 .button_box {
   width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
   padding: 1rem;
 }

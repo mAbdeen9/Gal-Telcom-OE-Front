@@ -1,10 +1,23 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .loading_box {
   background-color: #12181b;
   min-height: 100vh;
   width: 100%;
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   z-index: 100000;
   overflow: hidden;
@@ -23,21 +36,46 @@
   width: 0;
   height: 0;
   margin: 8px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border: 32px solid #cef;
   border-color: #cef transparent #cef transparent;
+  -webkit-animation: ldsHourglass 1.2s infinite;
   animation: ldsHourglass 1.2s infinite;
 }
-@keyframes ldsHourglass {
+@-webkit-keyframes ldsHourglass {
   0% {
+    -webkit-transform: rotate(0);
     transform: rotate(0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
     animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
   50% {
+    -webkit-transform: rotate(900deg);
     transform: rotate(900deg);
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
   100% {
+    -webkit-transform: rotate(1800deg);
+    transform: rotate(1800deg);
+  }
+}
+@keyframes ldsHourglass {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    -webkit-transform: rotate(900deg);
+    transform: rotate(900deg);
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    -webkit-transform: rotate(1800deg);
     transform: rotate(1800deg);
   }
 }
