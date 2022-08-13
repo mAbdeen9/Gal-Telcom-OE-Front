@@ -37,7 +37,7 @@ const Menu = (props) => {
     <div className={`container-fluid`}>
       <div className="container">
         <div className={classes.box}>
-          <ul>
+          <ul className={classes.li_box}>
             {props.role && (
               <li className={classes.admin_role} onClick={homePageHandler}>
                 ראשי

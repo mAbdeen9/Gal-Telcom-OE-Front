@@ -25,7 +25,7 @@ function Router() {
       <Suspense fallback={<PagesLoading />}>
         <Routes>
           {token && !role && <Route path="/home" element={<Home />} />}
-          {token && !role && <Route path="/my_orders" element={<MyOrders />} />}
+          {token && !role && <Route path="/my-orders" element={<MyOrders />} />}
           {token && role && <Route path="/admin_panel" element={<Admin />} />}
           {token && role && <Route path="/search" element={<SearchOrders />} />}
           {token && role && (
