@@ -25,13 +25,21 @@ const Menu = (props) => {
     navigate("/search");
   };
 
+  const homePageHandler = () => {
+    navigate("/admin_panel");
+  };
+
+  const contolPageHandler = () => {
+    navigate("/admin_control");
+  };
+
   return (
     <div className={`container-fluid ${classes.box}`}>
       <div className="container">
         <div>
           <ul>
             {props.role && (
-              <li className={classes.admin_role} onClick={searchPageHandler}>
+              <li className={classes.admin_role} onClick={homePageHandler}>
                 ראשי
                 <span className={classes.menuBtns}>
                   <i className="bi bi-house"></i>
@@ -40,8 +48,8 @@ const Menu = (props) => {
             )}
 
             {props.role && (
-              <li className={classes.admin_role} onClick={searchPageHandler}>
-                ניהול
+              <li className={classes.admin_role} onClick={contolPageHandler}>
+                ניהול &nbsp;
                 <span className={classes.menuBtns}>
                   <i className="bi bi-gear"></i>
                 </span>

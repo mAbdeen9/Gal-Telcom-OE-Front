@@ -1,4 +1,5 @@
 import React from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import Border from "../Border/Border";
 import Container from "../Container/Container";
@@ -150,6 +151,9 @@ const NoSerialData = [
 ];
 
 function SearchPanel() {
+  const serialRef = useRef();
+  const noSerialRef = useRef();
+
   const [showMoadl, setShowMoadl] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
   const [userDetails, setUserDetails] = useState("");
@@ -161,6 +165,14 @@ function SearchPanel() {
   };
 
   const handleClickBackDrop = () => setShowMoadl((state) => !state);
+
+  const serialHandler = () => {
+    console.log(serialRef.current.value);
+  };
+
+  const noSerialHandler = () => {
+    console.log(noSerialRef.current.value);
+  };
 
   return (
     <Container>
@@ -197,8 +209,13 @@ function SearchPanel() {
         </>
         <span className={classes.t1}>לחפש הזמנות סריאלי </span>
         <div className={classes.search_input}>
-          <input placeholder="חיפוש לפי מספר מחסן" type="number" /> &nbsp;
-          <button>
+          <input
+            placeholder="חיפוש לפי מספר מחסן"
+            type="number"
+            ref={serialRef}
+          />{" "}
+          &nbsp;
+          <button onClick={serialHandler}>
             <i className='class="bi bi-search'></i>
           </button>
         </div>
@@ -233,8 +250,13 @@ function SearchPanel() {
         <Border />
         <span className={classes.t1}>לחפש הזמנות לא סריאלי</span>
         <div className={classes.search_input}>
-          <input placeholder="חיפוש לפי מספר מחסן" type="number" /> &nbsp;
-          <button>
+          <input
+            placeholder="חיפוש לפי מספר מחסן"
+            type="number"
+            ref={noSerialRef}
+          />{" "}
+          &nbsp;
+          <button onClick={noSerialHandler}>
             <i className='class="bi bi-search'></i>
           </button>
         </div>
