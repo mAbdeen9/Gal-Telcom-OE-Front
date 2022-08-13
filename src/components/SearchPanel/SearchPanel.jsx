@@ -216,7 +216,7 @@ function SearchPanel() {
           />{" "}
           &nbsp;
           <button onClick={serialHandler}>
-            <i className='class="bi bi-search'></i>
+            <i className="bi bi-search"></i>
           </button>
         </div>
         <div className={classes.serial_box}>
@@ -254,10 +254,10 @@ function SearchPanel() {
             placeholder="חיפוש לפי מספר מחסן"
             type="number"
             ref={noSerialRef}
-          />{" "}
+          />
           &nbsp;
           <button onClick={noSerialHandler}>
-            <i className='class="bi bi-search'></i>
+            <i className="bi bi-search"></i>
           </button>
         </div>
         <div className={classes.serial_box}>

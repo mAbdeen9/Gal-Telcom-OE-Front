@@ -174,4 +174,9 @@
   .pending {
     font-size: 13px;
   }
+
+  .search_input input {
+    width: 130px;
+    font-size: 10px;
+  }
 }
