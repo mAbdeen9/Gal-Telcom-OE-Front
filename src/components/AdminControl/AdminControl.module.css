@@ -1,0 +1,78 @@
+.admin_panel_main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  width: 99%;
+  min-height: 120vh;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 60px;
+  font-family: "Varela Round", sans-serif;
+  padding: 1rem;
+}
+
+.card {
+  width: 400px;
+  background-color: #2a2e34;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  height: 400px;
+  text-align: center;
+  border-radius: 1rem;
+  font-weight: bold;
+}
+
+.done {
+  padding: 4px 16px;
+  border: none;
+  border-radius: 3px;
+  background-color: #0bc371;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  outline: none;
+}
+
+.emoji {
+  font-size: 2rem;
+}
+
+.input_box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 1rem;
+  align-items: center;
+  gap: 5px;
+}
+
+.input_box label {
+  width: 95px;
+}
+
+.t1 {
+  background-color: #4e5556;
+  color: #cbff8f;
+  font-weight: 400;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+@media (max-width: 780px) {
+  .card {
+    width: 280px;
+  }
+
+  .input_box input {
+    width: 120px;
+  }
+}

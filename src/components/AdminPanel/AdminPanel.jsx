@@ -7,10 +7,12 @@ function AdminPanel() {
   return (
     <Container>
       <div className={classes.admin_panel_main}>
-        <h1 className={classes.t1}>הזמנות</h1>
+        <h1 className={classes.t1}>
+          <i className="bi bi-boxes"></i> הזמנות
+        </h1>
         <div className={classes.emoji}>
           <span role="img" aria-label="emoji">
-            📦 📦
+            📦 📥
           </span>
         </div>
         <DarkTable />
