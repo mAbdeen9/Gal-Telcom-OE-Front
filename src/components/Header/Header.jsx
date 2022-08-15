@@ -23,10 +23,10 @@ const Header = () => {
               <i className="bi bi-list"> </i>
             </div>
             <div className={classes.wellcomBox}>
-              <span className={classes.emoji} role="img" aria-label="hi emoji">
-                👤
-              </span>
               ברוך הבא {user.name}
+              <span className={classes.emoji} role="img" aria-label="hi emoji">
+                👋🏻
+              </span>
             </div>
             <div className={classes.box}>
               <Logo class={classes.logo} />

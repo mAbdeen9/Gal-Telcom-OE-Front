@@ -67,7 +67,8 @@
 }
 
 .emoji {
-  padding: 4px;
+  font-size: 1.4rem;
+  padding-right: 10px;
 }
 
 .boxBurger {
@@ -83,4 +84,15 @@
   font-weight: bold;
   cursor: pointer;
   font-size: 2rem;
+}
+
+@media (max-width: 350px) {
+  .emoji {
+    font-size: 1rem;
+    padding-right: 5px;
+  }
+  .wellcomBox {
+    font-size: 12px;
+    padding: 0 4px;
+  }
 }
