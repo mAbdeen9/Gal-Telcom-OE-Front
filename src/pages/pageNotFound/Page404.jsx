@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./pageNotFound.module.css";
+
 function Page404() {
   return (
     <div className={classes.box}>
