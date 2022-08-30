@@ -1,19 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const timeAndDate = () => {
+const todayDate = () => {
   const today = new Date();
   const date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-  const time =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  const dateTime = date + " / " + time;
-  return dateTime;
+  return date;
+};
+
+const time = () => {
+  const today = new Date();
+  return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 };
 
 const initialState = {
   id: "",
   username: "",
-  dateTime: "",
+  date: "",
+  time: "",
   orderType: "Serial",
   orederStatus: "pending",
   order: [],
@@ -32,7 +35,8 @@ const OrderSerialSlice = createSlice({
       });
       state.id = action.payload.userDetails.id;
       state.username = action.payload.userDetails.name;
-      state.dateTime = timeAndDate();
+      state.date = todayDate();
+      state.time = time();
       state.order.push({ ...action.payload.orderDetails });
     },
     // remove from the cart when  unselect checkbox

@@ -10,6 +10,7 @@ const Menu = (props) => {
   const location = useLocation();
 
   const logoutHandler = () => {
+    localStorage.clear();
     dispatch(authActions.logout());
   };
 
@@ -38,7 +39,7 @@ const Menu = (props) => {
       <div className="container">
         <div className={classes.box}>
           <ul className={classes.li_box}>
-            {props.role && (
+            {props.role === "admin" && (
               <li className={classes.admin_role} onClick={homePageHandler}>
                 ראשי
                 <span className={classes.menuBtns}>
@@ -47,7 +48,7 @@ const Menu = (props) => {
               </li>
             )}
 
-            {props.role && (
+            {props.role === "admin" && (
               <li className={classes.admin_role} onClick={contolPageHandler}>
                 ניהול &nbsp;
                 <span className={classes.menuBtns}>
@@ -56,7 +57,7 @@ const Menu = (props) => {
               </li>
             )}
 
-            {props.role && (
+            {props.role === "admin" && (
               <li className={classes.admin_role} onClick={searchPageHandler}>
                 חיפוש
                 <span className={classes.menuBtns}>
@@ -72,7 +73,7 @@ const Menu = (props) => {
               </span>
             </li>
 
-            {!props.role && (
+            {props.role === "user" && (
               <li onClick={myOrdersHandler}>
                 {location.pathname === "/home" ? "הזמנות שלי" : "דף הבית"}
                 <span className={classes.menuBtns}>

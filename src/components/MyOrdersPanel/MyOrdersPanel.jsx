@@ -9,7 +9,8 @@ const data = [
   {
     id: "22",
     username: "מוחמד",
-    dateTime: "2022-8-5 / 10:41:51",
+    date: "2022-8-5 / 10:41:51",
+    time: "12",
     orderType: "Serial",
     orederStatus: "pending",
     order: [
@@ -41,7 +42,8 @@ const NoSerialData = [
   {
     id: "22",
     username: "מוחמד",
-    dateTime: "2022-8-6 / 16:38:38",
+    date: "2022-8-6 / 16:38:38",
+    time: "12",
     orderType: "noSerial",
     orederStatus: "pending",
     order: [
@@ -198,11 +200,11 @@ function MyOrdersPanel() {
           {data.map((order, index) => {
             return (
               <div key={index} className={classes.line}>
-                <div>תאריך : {order.dateTime.split("/")[0]}</div>
+                <div>תאריך : {order.date}</div>
                 <div>
                   <button
                     onClick={() => {
-                      modalHandler(order.order, order.dateTime.split("/")[0]);
+                      modalHandler(order.order, order.date);
                     }}
                     className={
                       order.orederStatus === "pending"
@@ -223,11 +225,11 @@ function MyOrdersPanel() {
           {NoSerialData.map((order, index) => {
             return (
               <div key={index} className={classes.line}>
-                <div>תאריך : {order.dateTime.split("/")[0]}</div>
+                <div>תאריך : {order.date}</div>
                 <div>
                   <button
                     onClick={() => {
-                      modalHandler(order.order, order.dateTime.split("/")[0]);
+                      modalHandler(order.order, order.date);
                     }}
                     className={classes.btnStyle}
                   >

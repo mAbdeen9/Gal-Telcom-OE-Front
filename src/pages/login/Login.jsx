@@ -1,4 +1,5 @@
 import React from "react";
+
 import Logo from "../../components/Logo/Logo";
 import classes from "./Login.module.css";
 import useInput from "../../hooks/use-input";
@@ -7,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
 import image from "../../assets/undraw_Login_re_4vu2.png";
 import { useState } from "react";
+import axios from "axios";
 const Login = () => {
   //
   const navigate = useNavigate();
@@ -34,29 +36,56 @@ const Login = () => {
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
     resetForm: resetPassword,
-  } = useInput((value) => value.length > 6 && value.length < 10);
+  } = useInput((value) => value.length > 5 && value.length < 10);
 
   let formIsVaild = false;
   if (phoneIsVaild && passwordIsVaild) formIsVaild = true;
 
-  const formSubmissionHandler = (e) => {
+  const formSubmissionHandler = async (e) => {
     e.preventDefault();
     setPhoneIsTouched(true);
     setpasswordIsTouched(true);
     if (!formIsVaild) return;
-    const inputValues = { phoneNumber: phoneValue, password: passwordValue };
+    const inputValues = { phone: phoneValue, password: passwordValue };
     console.log(inputValues);
-    // if (!err) setErromsg(true);
-    dispatch(
-      authActions.validator({
-        token: "null",
-        id: "22",
-        name: "מוחמד",
-        role: "admin",
-      })
-    );
-    navigate("/admin_panel", { replace: true });
-    // navigate("/home", { replace: true });
+    // try {
+    //   const res = await fetch("http://localhost:3000/api/v1/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ phone: "0538327909", password: "102030" }),
+    //   });
+    //   const data = await res.json();
+    //   console.log(data);
+    // } catch (err) {
+    //   console.log(err.message);
+    // }
+    try {
+      const res = await axios({
+        method: "POST",
+        url: "http://192.168.0.3:3000/api/v1/login",
+        data: inputValues,
+      });
+
+      if (res.status === 200) {
+        console.log(res);
+        localStorage.setItem("token", res.data.data.token);
+        dispatch(
+          authActions.validator({
+            ...res.data.data,
+          })
+        );
+        console.log(res.data.data.role);
+
+        if (res.data.data.role === "user") {
+          navigate("/home", { replace: true });
+        }
+        if (res.data.data.role === "admin") {
+          navigate("/admin_panel", { replace: true });
+        }
+      }
+    } catch (err) {}
 
     resetPhone();
     resetPassword();

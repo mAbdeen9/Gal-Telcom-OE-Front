@@ -23,7 +23,7 @@ const Header = () => {
               <i className="bi bi-list"> </i>
             </div>
             <div className={classes.wellcomBox}>
-              ברוך הבא {user.name}
+              ברוך הבא {user.name.split(" ")[0]}
               <span className={classes.emoji} role="img" aria-label="hi emoji">
                 👋🏻
               </span>

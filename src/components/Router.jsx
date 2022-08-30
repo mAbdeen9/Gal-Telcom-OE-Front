@@ -24,17 +24,25 @@ function Router() {
     <Fragment>
       <Suspense fallback={<PagesLoading />}>
         <Routes>
-          {token && !role && <Route path="/home" element={<Home />} />}
-          {token && !role && <Route path="/my-orders" element={<MyOrders />} />}
-          {token && role && <Route path="/admin_panel" element={<Admin />} />}
-          {token && role && <Route path="/search" element={<SearchOrders />} />}
-          {token && role && (
+          {token && role === "user" && (
+            <Route path="/home" element={<Home />} />
+          )}
+          {token && role === "user" && (
+            <Route path="/my-orders" element={<MyOrders />} />
+          )}
+          {token && role === "admin" && (
+            <Route path="/admin_panel" element={<Admin />} />
+          )}
+          {token && role === "admin" && (
+            <Route path="/search" element={<SearchOrders />} />
+          )}
+          {token && role === "admin" && (
             <Route path="/admin_control" element={<AdminControl />} />
           )}
-          {token && <Route path="/login" element={<Navigate to="/home" />} />}
-          {token && <Route path="*" element={<Page404 />} />}
+
           {!token && <Route path="*" element={<Navigate to="/login" />} />}
-          {!token && <Route path="/login" element={<Login />} />}
+          {<Route path="/login" element={<Login />} />}
+          {<Route path="*" element={<Page404 />} />}
         </Routes>
       </Suspense>
     </Fragment>

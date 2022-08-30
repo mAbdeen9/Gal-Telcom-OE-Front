@@ -9,7 +9,7 @@ const AuthSlice = createSlice({
     validator(state, action) {
       state.token = action.payload.token || null;
       state.id = action.payload.id || null;
-      state.name = action.payload.name || null;
+      state.name = action.payload.username || null;
       state.role = action.payload.role || null;
     },
     logout: () => initialState,
