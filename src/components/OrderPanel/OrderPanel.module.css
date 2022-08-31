@@ -67,7 +67,7 @@
 
 .loadingBox {
   padding: 4rem;
-  min-height: 50vh;
+  min-height: 60vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -76,7 +76,7 @@
   justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
 @media (max-width: 780px) {

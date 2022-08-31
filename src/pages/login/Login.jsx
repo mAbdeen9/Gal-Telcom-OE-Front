@@ -9,11 +9,12 @@ import { authActions } from "../../store/AuthSlice";
 import image from "../../assets/undraw_Login_re_4vu2.png";
 import { useState } from "react";
 import axios from "axios";
+import { apiUrl } from "../../config.json";
+
 const Login = () => {
   //
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // eslint-disable-next-line
   const [errorMsg, setErromsg] = useState(false);
 
   const {
@@ -47,36 +48,25 @@ const Login = () => {
     setpasswordIsTouched(true);
     if (!formIsVaild) return;
     const inputValues = { phone: phoneValue, password: passwordValue };
-    console.log(inputValues);
-    // try {
-    //   const res = await fetch("http://localhost:3000/api/v1/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ phone: "0538327909", password: "102030" }),
-    //   });
-    //   const data = await res.json();
-    //   console.log(data);
-    // } catch (err) {
-    //   console.log(err.message);
-    // }
     try {
       const res = await axios({
         method: "POST",
-        url: "http://192.168.0.3:3000/api/v1/login",
+        url: `${apiUrl}/login`,
         data: inputValues,
       });
 
       if (res.status === 200) {
-        console.log(res);
-        localStorage.setItem("token", res.data.data.token);
+        localStorage.setItem(
+          "meta-data",
+          JSON.stringify({
+            ...res.data.data,
+          })
+        );
         dispatch(
           authActions.validator({
             ...res.data.data,
           })
         );
-        console.log(res.data.data.role);
 
         if (res.data.data.role === "user") {
           navigate("/home", { replace: true });
@@ -85,7 +75,9 @@ const Login = () => {
           navigate("/admin_panel", { replace: true });
         }
       }
-    } catch (err) {}
+    } catch (err) {
+      setErromsg(true);
+    }
 
     resetPhone();
     resetPassword();
