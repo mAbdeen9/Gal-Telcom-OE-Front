@@ -30,7 +30,10 @@ const OrderPanel = () => {
   const [isLoading2, setIsLoading2] = useState(false);
   const [response, setResponse] = useState(null);
   const [messageFromServer, setMessageFromServer] = useState("");
+  const [response2, setResponse2] = useState(null);
+  const [messageFromServer2, setMessageFromServer2] = useState("");
   const dispatch = useDispatch();
+  const token = JSON.parse(localStorage.getItem("meta-data")).token;
 
   useEffect(() => {
     dispatch(OrderSerialActions.reset());
@@ -41,7 +44,6 @@ const OrderPanel = () => {
     e.preventDefault();
     if (OrderSerialSlice.length === 0) return;
     try {
-      const token = JSON.parse(localStorage.getItem("meta-data")).token;
       setIsLoading((state) => !state);
       const res = await axios({
         method: "POST",
@@ -60,11 +62,27 @@ const OrderPanel = () => {
     setIsLoading((state) => !state);
   };
 
-  const handelSubmintNoSerial = (e) => {
+  const handelSubmintNoSerial = async (e) => {
     e.preventDefault();
     if (OrderNoSerialSlice.length === 0) return;
+
+    try {
+      setIsLoading2((state) => !state);
+      const res = await axios({
+        method: "POST",
+        url: `${apiUrl}/order/new-noSerial-order`,
+        headers: {
+          authorization: token,
+        },
+        data: OrderNoSerialSliceFull,
+      });
+      setResponse2(true);
+      setMessageFromServer2(res.data.message);
+    } catch (err) {
+      setResponse2(true);
+      setMessageFromServer2(err.response.data.message);
+    }
     setIsLoading2((state) => !state);
-    console.log(OrderNoSerialSliceFull);
   };
 
   return (
@@ -96,12 +114,16 @@ const OrderPanel = () => {
             ⚙️ 🛠
           </span>
         </div>
-        {isLoading2 ? (
-          <div className={classes.loadingBox}>
-            <Loading />
-          </div>
+        {!response2 ? (
+          isLoading2 ? (
+            <div className={classes.loadingBox}>
+              <Loading />
+            </div>
+          ) : (
+            <OrderCardNoSerial onSubmitCard={handelSubmintNoSerial} />
+          )
         ) : (
-          <OrderCardNoSerial onSubmitCard={handelSubmintNoSerial} />
+          <MessageCard message={messageFromServer2} />
         )}
       </div>
     </Container>
