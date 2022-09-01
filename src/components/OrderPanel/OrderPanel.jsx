@@ -11,6 +11,8 @@ import MessageCard from "../MessageCard/MessageCard";
 import OrderCard from "../OrderCard/OrderCard";
 import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
+import axios from "axios";
+import { apiUrl } from "../../config.json";
 
 const OrderPanel = () => {
   //Just for Testing you should remove this code ⚠️⚠️⚠️⚠️⚠️⚠️
@@ -35,16 +37,27 @@ const OrderPanel = () => {
     dispatch(OrderNoSerialActions.reset());
   }, []);
 
-  const handelSubmintSerial = (e) => {
+  const handelSubmintSerial = async (e) => {
     e.preventDefault();
     if (OrderSerialSlice.length === 0) return;
-    setIsLoading((state) => !state);
-    console.log(OrderSerialSliceFull);
-    setTimeout(() => {
-      setResponse(true);
-      setMessageFromServer("קיבלנו את בקשתך בהצלחה 👍");
+    try {
+      const token = JSON.parse(localStorage.getItem("meta-data")).token;
       setIsLoading((state) => !state);
-    }, 3000);
+      const res = await axios({
+        method: "POST",
+        url: `${apiUrl}/order/new-serial-order`,
+        headers: {
+          authorization: token,
+        },
+        data: OrderSerialSliceFull,
+      });
+      setResponse(true);
+      setMessageFromServer(res.data.message);
+    } catch (err) {
+      setResponse(true);
+      setMessageFromServer(err.response.data.message);
+    }
+    setIsLoading((state) => !state);
   };
 
   const handelSubmintNoSerial = (e) => {
