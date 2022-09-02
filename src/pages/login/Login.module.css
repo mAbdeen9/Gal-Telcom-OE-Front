@@ -9,20 +9,7 @@
   font-family: "Varela Round", sans-serif;
   width: 100%;
   min-height: 100vh;
-  background: #606c88; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#3f4c6b),
-    to(#606c88)
-  );
-  background: -o-linear-gradient(left, #3f4c6b, #606c88);
-  background: linear-gradient(
-    to right,
-    #3f4c6b,
-    #606c88
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #12181c;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -52,9 +39,10 @@
   flex-direction: column;
   width: 400px !important;
   height: 700px !important;
-  background-color: #ffffff;
+  background-color: #2a2e34;
   margin: auto;
   position: relative;
+  color: white;
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.2);
@@ -63,7 +51,7 @@
 }
 
 .logo {
-  color: #409fd1;
+  color: white;
   text-align: end;
   font-size: 1.3rem;
   font-weight: bold;
@@ -74,11 +62,9 @@
 }
 .invaildPhone {
   background-color: #fddddd !important;
-  border: 1px solid #b40e0e !important;
 }
 .invaildPassword {
   background-color: #fddddd !important;
-  border: 1px solid #b40e0e !important;
 }
 .inputBox {
   display: -webkit-box;
@@ -102,24 +88,33 @@
   padding-right: 1rem;
   border-radius: 1rem;
 }
+.sizeRocket {
+  font-size: 2rem;
+  text-align: center;
+  margin: 1rem;
+}
 
 .inputBox input:invalid {
   background-color: #efefef;
   border: 0;
   padding: 0 0.5rem;
   border-radius: 1rem;
-  background-color: red;
+  background-color: #ef5350;
+  gap: 5px;
 }
 
 .errorMsg {
-  color: #b40e0e;
+  color: #ef5350;
   font-size: 1rem;
 }
 
 .error {
-  color: #b40e0e;
+  color: #ef5350;
   font-size: 1rem;
   text-align: center;
+  font-weight: bold;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 .loginBtn {
@@ -135,14 +130,17 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 15px;
   width: 80%;
   height: 50px;
   background: rgb(108, 128, 237, 1);
   border: 0;
-  color: white;
+
   border-radius: 1rem;
   margin: 1.5rem auto;
+  background-color: #4e5556;
+  color: #cbff8f;
+  font-weight: 400;
 }
 
 .loginBtn:hover {
@@ -150,7 +148,8 @@
 }
 
 .imgLogin {
-  width: 300px;
+  width: 100px;
+  height: 200px;
   margin: 1rem auto;
   text-align: center;
   display: block;

@@ -33,7 +33,10 @@ const OrderPanel = () => {
   const [response2, setResponse2] = useState(null);
   const [messageFromServer2, setMessageFromServer2] = useState("");
   const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem("meta-data")).token;
+  let token;
+  if (JSON.parse(localStorage.getItem("meta-data"))) {
+    token = JSON.parse(localStorage.getItem("meta-data")).token || "";
+  }
 
   useEffect(() => {
     dispatch(OrderSerialActions.reset());
@@ -57,6 +60,10 @@ const OrderPanel = () => {
       setMessageFromServer(res.data.message);
     } catch (err) {
       setResponse(true);
+      if (err.response.status >= 500) {
+        return setMessageFromServer("בעיית התחברות נסה שוב 😕");
+      }
+
       setMessageFromServer(err.response.data.message);
     }
     setIsLoading((state) => !state);
@@ -80,6 +87,9 @@ const OrderPanel = () => {
       setMessageFromServer2(res.data.message);
     } catch (err) {
       setResponse2(true);
+      if (err.response.status >= 500) {
+        return setMessageFromServer2("בעיית התחברות נסה שוב 😕");
+      }
       setMessageFromServer2(err.response.data.message);
     }
     setIsLoading2((state) => !state);

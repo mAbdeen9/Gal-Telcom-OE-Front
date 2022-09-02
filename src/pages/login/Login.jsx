@@ -6,7 +6,6 @@ import useInput from "../../hooks/use-input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
-import image from "../../assets/undraw_Login_re_4vu2.png";
 import { useState } from "react";
 import axios from "axios";
 import { apiUrl } from "../../config.json";
@@ -16,6 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [errorMsg, setErromsg] = useState(false);
+  const [connecting, setConnecting] = useState(false);
 
   const {
     enterdValue: phoneValue,
@@ -49,6 +49,7 @@ const Login = () => {
     if (!formIsVaild) return;
     const inputValues = { phone: phoneValue, password: passwordValue };
     try {
+      setConnecting(true);
       const res = await axios({
         method: "POST",
         url: `${apiUrl}/login`,
@@ -78,7 +79,7 @@ const Login = () => {
     } catch (err) {
       setErromsg(true);
     }
-
+    setConnecting(false);
     resetPhone();
     resetPassword();
   };
@@ -105,7 +106,7 @@ const Login = () => {
             <span role="img" aria-label="user image">
               👤
             </span>
-            הזן את פרטיך
+            &nbsp; הזן את פרטיך
           </div>
           <div className={classes.inputBox}>
             <label style={{ opacity: "0.7" }} htmlFor="phone number">
@@ -139,12 +140,16 @@ const Login = () => {
               <p className={classes.errorMsg}>סיסמה שגויה</p>
             )}
           </div>
-          <button className={classes.loginBtn}>המשך</button>
+          <button className={classes.loginBtn}>
+            {connecting ? "מתחבר ..." : "המשך"}
+          </button>
           {errorMsg && (
             <span className={classes.error}>סיסמה או מספר טלפון שגויים</span>
           )}
-          <div>
-            <img className={classes.imgLogin} src={image} alt="imgLogin" />
+          <div className={classes.sizeRocket}>
+            <span role="img" aria-label="emoji">
+              📝 🚀
+            </span>
           </div>
         </form>
       </div>
