@@ -42,6 +42,7 @@ const OrderPanel = () => {
   const handelSubmintSerial = async (e) => {
     e.preventDefault();
     if (OrderSerialSlice.length === 0) return;
+    console.log(OrderSerialSliceFull);
     try {
       setIsLoading((state) => !state);
       const res = await httpRequest(
@@ -66,7 +67,7 @@ const OrderPanel = () => {
   const handelSubmintNoSerial = async (e) => {
     e.preventDefault();
     if (OrderNoSerialSlice.length === 0) return;
-
+    console.log(OrderNoSerialSliceFull);
     try {
       setIsLoading2((state) => !state);
       const res = await httpRequest(
