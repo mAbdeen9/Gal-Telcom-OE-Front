@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
 import { useState } from "react";
-import axios from "axios";
-import { apiUrl } from "../../config.json";
+import { useEffect } from "react";
+import httpRequest from "../../helpers/httpReq";
 
 const Login = () => {
   //
@@ -16,6 +16,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const [errorMsg, setErromsg] = useState(false);
   const [connecting, setConnecting] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const {
     enterdValue: phoneValue,
@@ -50,11 +54,8 @@ const Login = () => {
     const inputValues = { phone: phoneValue, password: passwordValue };
     try {
       setConnecting(true);
-      const res = await axios({
-        method: "POST",
-        url: `${apiUrl}/login`,
-        data: inputValues,
-      });
+
+      const res = await httpRequest("POST", "/login", "", inputValues);
 
       if (res.status === 200) {
         localStorage.setItem(
@@ -148,7 +149,7 @@ const Login = () => {
           )}
           <div className={classes.sizeRocket}>
             <span role="img" aria-label="emoji">
-              📝 🚀
+              📝 ⬅️
             </span>
           </div>
         </form>

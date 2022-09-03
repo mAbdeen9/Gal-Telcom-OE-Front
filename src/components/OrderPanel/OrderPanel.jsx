@@ -11,21 +11,20 @@ import MessageCard from "../MessageCard/MessageCard";
 import OrderCard from "../OrderCard/OrderCard";
 import OrderCardNoSerial from "../OrderCardNoSerial/OrderCardNoSerial";
 import classes from "./OrderPanel.module.css";
-import axios from "axios";
-import { apiUrl } from "../../config.json";
+import getToken from "../../helpers/getToken";
+import httpRequest from "../../helpers/httpReq";
 
 const OrderPanel = () => {
-  //Just for Testing you should remove this code ⚠️⚠️⚠️⚠️⚠️⚠️
   const OrderSerialSliceFull = useSelector((state) => state.OrderSerialSlice);
   const OrderNoSerialSliceFull = useSelector(
     (state) => state.OrderNoSerialSlice
   );
 
-  //
   const OrderSerialSlice = useSelector((state) => state.OrderSerialSlice.order);
   const OrderNoSerialSlice = useSelector(
     (state) => state.OrderNoSerialSlice.order
   );
+
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const [response, setResponse] = useState(null);
@@ -33,10 +32,7 @@ const OrderPanel = () => {
   const [response2, setResponse2] = useState(null);
   const [messageFromServer2, setMessageFromServer2] = useState("");
   const dispatch = useDispatch();
-  let token;
-  if (JSON.parse(localStorage.getItem("meta-data"))) {
-    token = JSON.parse(localStorage.getItem("meta-data")).token || "";
-  }
+  const token = getToken();
 
   useEffect(() => {
     dispatch(OrderSerialActions.reset());
@@ -48,14 +44,12 @@ const OrderPanel = () => {
     if (OrderSerialSlice.length === 0) return;
     try {
       setIsLoading((state) => !state);
-      const res = await axios({
-        method: "POST",
-        url: `${apiUrl}/order/new-serial-order`,
-        headers: {
-          authorization: token,
-        },
-        data: OrderSerialSliceFull,
-      });
+      const res = await httpRequest(
+        "POST",
+        "/order/new-serial-order",
+        token,
+        OrderSerialSliceFull
+      );
       setResponse(true);
       setMessageFromServer(res.data.message);
     } catch (err) {
@@ -75,14 +69,12 @@ const OrderPanel = () => {
 
     try {
       setIsLoading2((state) => !state);
-      const res = await axios({
-        method: "POST",
-        url: `${apiUrl}/order/new-noSerial-order`,
-        headers: {
-          authorization: token,
-        },
-        data: OrderNoSerialSliceFull,
-      });
+      const res = await httpRequest(
+        "POST",
+        "/order/new-noSerial-order",
+        token,
+        OrderNoSerialSliceFull
+      );
       setResponse2(true);
       setMessageFromServer2(res.data.message);
     } catch (err) {

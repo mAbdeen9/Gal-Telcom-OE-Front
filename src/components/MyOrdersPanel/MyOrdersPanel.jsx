@@ -1,160 +1,56 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import Border from "../Border/Border";
 import Container from "../Container/Container";
 import Modal from "../Modal/Modal";
 import classes from "./MyOrdersPanel.module.css";
-
-const data = [
-  {
-    id: "22",
-    username: "מוחמד",
-    date: "2022-8-5 / 10:41:51",
-    time: "12",
-    orderType: "Serial",
-    orederStatus: "pending",
-    order: [
-      {
-        name: "מודם סיבים NOKIA",
-        value: "10",
-        type: "serial",
-      },
-      {
-        name: "נתב סיבים דגם AIO",
-        value: "15",
-        type: "serial",
-      },
-      {
-        name: "נתב דגם AC VV5823",
-        value: "5",
-        type: "serial",
-      },
-      {
-        name: "נתב דגם B35",
-        value: "20",
-        type: "serial",
-      },
-    ],
-  },
-];
-
-const NoSerialData = [
-  {
-    id: "22",
-    username: "מוחמד",
-    date: "2022-8-6 / 16:38:38",
-    time: "12",
-    orderType: "noSerial",
-    orederStatus: "pending",
-    order: [
-      {
-        name: "FTTH drop fiber L=20",
-        value: "10",
-        type: "NoSerial",
-      },
-      {
-        name: "FTTH drop fiber L=30",
-        value: "15",
-        type: "NoSerial",
-      },
-      {
-        name: "FTTH drop fiber L=40",
-        value: "15",
-        type: "NoSerial",
-      },
-      {
-        name: "FTTH drop fiber L=50",
-        value: "10",
-        type: "NoSerial",
-      },
-      {
-        name: "מגשר אופטי קטן/קטן",
-        value: "5",
-        type: "NoSerial",
-      },
-      {
-        name: "מגשר אופטי קטן/גדול",
-        value: "10",
-        type: "NoSerial",
-      },
-      {
-        name: "קונקטורים אופטי",
-        value: "10",
-        type: "NoSerial",
-      },
-      {
-        name: "שקע אף",
-        value: "1",
-        type: "NoSerial",
-      },
-      {
-        name: "שקע טלפון",
-        value: "10",
-        type: "NoSerial",
-      },
-      {
-        name: "שקע טלפון כפול",
-        value: "5",
-        type: "NoSerial",
-      },
-      {
-        name: "שקע טלפון גוויס",
-        value: "15",
-        type: "NoSerial",
-      },
-      {
-        name: "כבל רשת 100 מטר CAT5E",
-        value: "1",
-        type: "NoSerial",
-      },
-      {
-        name: "כבל 100 מטר Coax RG59",
-        value: "5",
-        type: "NoSerial",
-      },
-      {
-        name: "כבל  100 מטר דרופ 4 גידים",
-        value: "3",
-        type: "NoSerial",
-      },
-      {
-        name: "חבילת קונקטורים RG6",
-        value: "3",
-        type: "NoSerial",
-      },
-      {
-        name: "חבילת קונקטורים RG59",
-        value: "3",
-        type: "NoSerial",
-      },
-      {
-        name: "חבילת Splice-Coax",
-        value: "3",
-        type: "NoSerial",
-      },
-      {
-        name: "חבילת קליפסים",
-        value: "3",
-        type: "NoSerial",
-      },
-      {
-        name: "איזולירבנד",
-        value: "1",
-        type: "NoSerial",
-      },
-      {
-        name: "סיליקון",
-        value: "3",
-        type: "NoSerial",
-      },
-    ],
-  },
-];
+import getToken from "../../helpers/getToken";
+import httpRequest from "../../helpers/httpReq";
+import Loading from "../Loading/Loading";
 
 function MyOrdersPanel() {
   const [showMoadl, setShowMoadl] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
   const [dateOfOrder, setDateOfOrder] = useState("");
+  const [data, setData] = useState([]);
+  const [NoSerialData, setNoSerialData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({ status: false, message: "" });
+  const [isLoading2, setIsLoading2] = useState(false);
+  const [error2, setError2] = useState({ status: false, message: "" });
+  const token = getToken();
+
+  useEffect(() => {
+    const fetchSerialData = async () => {
+      try {
+        setIsLoading((state) => !state);
+        const res = await httpRequest("GET", "/order/my-serials-orders", token);
+        setData(res.data.data);
+      } catch (err) {
+        setError(() => ({ status: true, message: err.message }));
+      }
+      setIsLoading((state) => !state);
+    };
+
+    const fetchNoSerialData = async () => {
+      try {
+        setIsLoading2((state) => !state);
+        const res = await httpRequest(
+          "GET",
+          "/order/my-no-serials-orders",
+          token
+        );
+        setNoSerialData(res.data.data);
+      } catch (err) {
+        setError2(() => ({ status: true, message: err.message }));
+      }
+      setIsLoading2((state) => !state);
+    };
+
+    fetchSerialData();
+    fetchNoSerialData();
+  }, []);
 
   const modalHandler = (data, date) => {
     setShowMoadl((state) => !state);
@@ -197,48 +93,63 @@ function MyOrdersPanel() {
         </>
         <span className={classes.t1}>הזמנות סריאלי</span>
         <div className={classes.serial_box}>
-          {data.map((order, index) => {
-            return (
-              <div key={index} className={classes.line}>
-                <div>תאריך : {order.date}</div>
-                <div>
-                  <button
-                    onClick={() => {
-                      modalHandler(order.order, order.date);
-                    }}
-                    className={
-                      order.orederStatus === "pending"
-                        ? classes.pending
-                        : classes.btnStyle
-                    }
-                  >
-                    פרטי הזמנה
-                  </button>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            !error.status &&
+            data.map((order, index) => {
+              return (
+                <div key={index} className={classes.line}>
+                  <div>תאריך : {order.date}</div>
+                  <div>
+                    <button
+                      onClick={() => {
+                        modalHandler(order.order, order.date);
+                      }}
+                      className={
+                        order.orederStatus === "pending"
+                          ? classes.pending
+                          : classes.btnStyle
+                      }
+                    >
+                      פרטי הזמנה
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
+          {error.status ? error.message : ""}
         </div>
         <Border />
         <span className={classes.t1}>הזמנות לא סריאלי</span>
         <div className={classes.serial_box}>
-          {NoSerialData.map((order, index) => {
-            return (
-              <div key={index} className={classes.line}>
-                <div>תאריך : {order.date}</div>
-                <div>
-                  <button
-                    onClick={() => {
-                      modalHandler(order.order, order.date);
-                    }}
-                    className={classes.btnStyle}
-                  >
-                    פרטי הזמנה
-                  </button>
+          {isLoading2 ? (
+            <Loading />
+          ) : (
+            NoSerialData.map((order, index) => {
+              return (
+                <div key={index} className={classes.line}>
+                  <div>תאריך : {order.date}</div>
+                  <div>
+                    <button
+                      onClick={() => {
+                        modalHandler(order.order, order.date);
+                      }}
+                      className={
+                        order.orederStatus === "pending"
+                          ? classes.pending
+                          : classes.btnStyle
+                      }
+                    >
+                      פרטי הזמנה
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
+          {error2.status ? error2.message : ""}
         </div>
         <br />
       </div>
