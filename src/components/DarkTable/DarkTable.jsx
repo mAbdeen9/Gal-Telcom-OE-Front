@@ -1,144 +1,50 @@
 import React, { useState } from "react";
+import { Fragment } from "react";
+import { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import getToken from "../../helpers/getToken";
+import httpRequest from "../../helpers/httpReq";
 import AdminGear from "../AdminGear/AdminGear";
+import Loading from "../Loading/Loading";
 import ModalTable from "../Modal/ModalTable";
 import classes from "./DarkTable.module.css";
-
-const dataFromApi = [
-  {
-    id: "22",
-    username: "מוחמד",
-    dateTime: "2022-8-10 / 0:44:28",
-    orderType: "Serial",
-    orederStatus: "pending",
-    order: [
-      {
-        name: "נתב דגם AC VV5823",
-        value: "10",
-        type: "serial",
-      },
-      {
-        name: "נתב סיבים דגם AIO",
-        value: "15",
-        type: "serial",
-      },
-      {
-        name: "נתב דגם B35",
-        value: "5",
-        type: "serial",
-      },
-    ],
-  },
-  {
-    id: "44",
-    username: "דל׳ך ךד",
-    dateTime: "2022-8-120 / 0:44:28",
-    orderType: "Serial",
-    orederStatus: "pending",
-    order: [
-      {
-        name: "נתב דגם AC 321",
-        value: "12",
-        type: "serial",
-      },
-      {
-        name: "3 סיבים דגם AIO",
-        value: "3",
-        type: "serial",
-      },
-      {
-        name: "נתב דגם B35",
-        value: "5",
-        type: "serial",
-      },
-    ],
-  },
-  {
-    id: "55",
-    username: "כםםד ךככגד כ",
-    dateTime: "2022-8-10 / 0:44:28",
-    orderType: "Serial",
-    orederStatus: "pending",
-    order: [
-      {
-        name: "נתב דגם AC asdz",
-        value: "60",
-        type: "serial",
-      },
-      {
-        name: "נתב סיבים דגם gdf",
-        value: "33",
-        type: "serial",
-      },
-      {
-        name: "נתב דגם B353",
-        value: "51",
-        type: "noser",
-      },
-    ],
-  },
-
-  {
-    id: "55",
-    username: "כםםד ךככגד כ",
-    dateTime: "2022-8-10 / 0:44:28",
-    orderType: "Serial",
-    orederStatus: "pending",
-    order: [
-      {
-        name: "נתב דגם AC asdz",
-        value: "60",
-        type: "serial",
-      },
-      {
-        name: "23 סיבים דגם gdf",
-        value: "33",
-        type: "serial",
-      },
-      {
-        name: "נתבas דגם B353",
-        value: "51",
-        type: "noser",
-      },
-      {
-        name: "נתב absדגם AC asdz",
-        value: "60",
-        type: "serial",
-      },
-      {
-        name: "נתב סיבים דגם gdf",
-        value: "33",
-        type: "serial",
-      },
-      {
-        name: "נתב דגם B353",
-        value: "51",
-        type: "noser",
-      },
-    ],
-  },
-];
 
 function DarkTable() {
   const [showModal, setShowModal] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
-  const [orderId, setOrderId] = useState({});
-  // eslint-disable-next-line
+  const [orderInfo, setorderInfo] = useState({});
   const [loading, setLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
+  const [dataFromApi, setDataFromApi] = useState([]);
   const checkOrder = useSelector((state) => state.CheckedOrder.order);
+  const token = getToken();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setDataLoading((state) => !state);
+      try {
+        const res = await httpRequest("GET", "/order/pending-orders", token);
+        setDataFromApi(res.data.data);
+      } catch (err) {
+        alert(err.message);
+      }
+      setDataLoading((state) => !state);
+    };
+    fetchData();
+  }, []);
 
   const showModalHadnler = () => setShowModal((state) => !state);
 
-  const tableRowHandler = (order, orders) => {
-    const { id, username, dateTime, orederStatus, orderType } = order;
-    setOrderId({ id, username, dateTime, orederStatus, orderType });
-    setModalJsx(orders);
+  const tableRowHandler = (order, ordersArray) => {
+    const { id, username, date, time, orederStatus, orderType } = order;
+    setorderInfo({ id, username, date, time, orederStatus, orderType });
+    setModalJsx(ordersArray);
     setShowModal((state) => !state);
   };
 
-  const updateOrderHandler = () => {
-    const userInfo = orderId;
+  const updateOrderHandler = async () => {
+    const userInfo = orderInfo;
     userInfo.orederStatus = "done";
     userInfo.order = checkOrder;
     console.log(userInfo);
@@ -146,57 +52,72 @@ function DarkTable() {
   };
 
   return (
-    <Table striped bordered hover variant="dark" className={classes.table_main}>
-      {showModal && (
-        <ModalTable>
-          <h3>הזמנה עבור : {orderId.username} </h3>
-          <h4>מחסן טכנאי : {orderId.id}</h4>
-          {modalJsx.map((data, index) => {
-            return (
-              <AdminGear
-                key={index}
-                type={data.type}
-                name={data.name}
-                value={data.value}
-              />
-            );
-          })}
-          <div className={classes.button_box}>
-            <button className={classes.done} onClick={updateOrderHandler}>
-              {loading ? "טוען..." : "בוצע"}
-            </button>
-            <button className={classes.close} onClick={showModalHadnler}>
-              סגור
-            </button>
-          </div>
-        </ModalTable>
-      )}
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>שם הטכנאי</th>
-          <th>מחסן טכנאי</th>
-          <th>פרטי הזמנה</th>
-        </tr>
-      </thead>
-      <tbody>
-        {dataFromApi.map((orders, index) => {
-          return (
-            <tr
-              key={index}
-              onClick={() => {
-                tableRowHandler(orders, orders.order);
-              }}
-            >
-              <td>{index + 1}</td>
-              <td>{orders.username}</td>
-              <td>{orders.id}</td>
-              <td>{orders.orderType}</td>
+    <Fragment>
+      {dataLoading ? (
+        <div className={classes.Loading}>
+          <Loading />
+        </div>
+      ) : (
+        <Table
+          striped
+          bordered
+          hover
+          variant="dark"
+          className={classes.table_main}
+        >
+          {showModal && (
+            <ModalTable>
+              <h5>הזמנה עבור : {orderInfo.username} </h5>
+              <h5>מחסן טכנאי : {orderInfo.id}</h5>
+              <h5>תאריך : {orderInfo.date}</h5>
+              {modalJsx.map((data, index) => {
+                return (
+                  <AdminGear
+                    key={index}
+                    type={data.type}
+                    name={data.name}
+                    value={data.value}
+                  />
+                );
+              })}
+              <div className={classes.button_box}>
+                <button className={classes.done} onClick={updateOrderHandler}>
+                  {loading ? "טוען..." : "בוצע"}
+                </button>
+                <button className={classes.close} onClick={showModalHadnler}>
+                  סגור
+                </button>
+              </div>
+            </ModalTable>
+          )}
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>שם הטכנאי</th>
+              <th>מחסן טכנאי</th>
+              <th>פרטי הזמנה</th>
             </tr>
-          );
-        })}
-      </tbody>
-    </Table>
+          </thead>
+          <tbody>
+            {dataFromApi.map((order, index) => {
+              return (
+                <tr
+                  key={index}
+                  onClick={() => {
+                    tableRowHandler(order, order.order);
+                  }}
+                >
+                  <td>{index + 1}</td>
+                  <td>{order.username}</td>
+                  <td>{order.id}</td>
+                  <td>{order.orderType}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      )}
+    </Fragment>
   );
 }
 

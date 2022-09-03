@@ -54,9 +54,7 @@ const Login = () => {
     const inputValues = { phone: phoneValue, password: passwordValue };
     try {
       setConnecting(true);
-
       const res = await httpRequest("POST", "/login", "", inputValues);
-
       if (res.status === 200) {
         localStorage.setItem(
           "meta-data",
@@ -69,7 +67,6 @@ const Login = () => {
             ...res.data.data,
           })
         );
-
         if (res.data.data.role === "user") {
           navigate("/home", { replace: true });
         }
@@ -78,6 +75,9 @@ const Login = () => {
         }
       }
     } catch (err) {
+      if (err.message === "Network Error") {
+        alert(err.message);
+      }
       setErromsg(true);
     }
     setConnecting(false);

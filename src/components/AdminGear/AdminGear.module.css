@@ -6,7 +6,7 @@
 */
 
 .Admin_gear_box {
-  width: 95%;
+  width: 97%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,8 +21,16 @@
   font-family: "Varela Round", sans-serif;
   font-weight: bold;
 }
-.Admin_gear_box div {
-  width: calc(100% / 3);
+.first {
+  width: 40%;
+  text-align: start;
+}
+.second {
+  width: 30%;
+  text-align: center;
+}
+.emoji {
+  width: 30%;
 }
 .select_box {
   text-align: center;
@@ -38,11 +46,19 @@
 @media (max-width: 780px) {
   .Admin_gear_box {
     gap: 0.4rem;
-    font-size: 13px;
+    font-size: 14px;
     padding: 0.1rem;
     text-align: center;
   }
-  .Admin_gear_box div {
-    width: auto;
+
+  .first {
+    width: 70%;
+  }
+  .second {
+    width: 10%;
+    margin-left: 7px;
+  }
+  .emoji {
+    width: 18%;
   }
 }

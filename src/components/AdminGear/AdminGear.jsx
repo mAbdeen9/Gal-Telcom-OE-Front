@@ -57,7 +57,7 @@ function AdminGear(props) {
 
   return (
     <div onChange={selectOptionHadnler} className={classes.Admin_gear_box}>
-      <div>
+      <div className={classes.first}>
         <span>
           <input
             name={props.name}
@@ -70,7 +70,7 @@ function AdminGear(props) {
           <label htmlFor={props.name}> {props.name} </label>
         </span>
       </div>
-      <div>
+      <div className={classes.second}>
         <select
           name={props.name}
           id={props.name}

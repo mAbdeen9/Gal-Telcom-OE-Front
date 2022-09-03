@@ -9,6 +9,7 @@
   cursor: pointer;
   font-family: "Varela Round", sans-serif;
   font-weight: bold;
+  width: 70%;
 }
 
 .done {
@@ -51,4 +52,17 @@
   -ms-flex-pack: distribute;
   justify-content: space-around;
   padding: 1rem;
+}
+
+.Loading {
+  text-align: center;
+
+  width: 50%;
+}
+
+@media (max-width: 780px) {
+  .table_main {
+    width: 100%;
+    font-size: 15px;
+  }
 }
