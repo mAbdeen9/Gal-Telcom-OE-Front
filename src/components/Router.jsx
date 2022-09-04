@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Fragment } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PagesLoading from "./Loading/PagesLoading";
 
@@ -8,7 +8,6 @@ const Login = React.lazy(() => import("../pages/Login/Login"));
 const Home = React.lazy(() => import("../pages/Home/Home"));
 const MyOrders = React.lazy(() => import("../pages/MyOrders/MyOrders"));
 const Admin = React.lazy(() => import("../pages/Admin/Admin"));
-const Page404 = React.lazy(() => import("../pages/pageNotFound/Page404"));
 const AdminControl = React.lazy(() =>
   import("../pages/AdminControl/AdminControlPage")
 );
@@ -17,7 +16,6 @@ const SearchOrders = React.lazy(() =>
 );
 
 function Router() {
-  //
   const { token, role } = useSelector((state) => state.auth);
 
   return (
@@ -40,9 +38,8 @@ function Router() {
             <Route path="/admin_control" element={<AdminControl />} />
           )}
 
-          {!token && <Route path="*" element={<Navigate to="/login" />} />}
           {<Route path="/login" element={<Login />} />}
-          {<Route path="*" element={<Page404 />} />}
+          {<Route path="*" element={<Login />} />}
         </Routes>
       </Suspense>
     </Fragment>
