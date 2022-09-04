@@ -17,6 +17,7 @@ function DarkTable() {
   const [loading, setLoading] = useState(false);
   const [dataLoading, setDataLoading] = useState(false);
   const [dataFromApi, setDataFromApi] = useState([]);
+  const [sendReq, setSendReq] = useState(false);
   const checkOrder = useSelector((state) => state.CheckedOrder.order);
   const token = getToken();
 
@@ -32,13 +33,13 @@ function DarkTable() {
       setDataLoading((state) => !state);
     };
     fetchData();
-  }, []);
+  }, [sendReq]);
 
   const showModalHadnler = () => setShowModal((state) => !state);
 
   const tableRowHandler = (order, ordersArray) => {
-    const { id, username, date, time, orederStatus, orderType } = order;
-    setorderInfo({ id, username, date, time, orederStatus, orderType });
+    const { id, username, date, time, orederStatus, orderType, _id } = order;
+    setorderInfo({ id, username, date, time, orederStatus, orderType, _id });
     setModalJsx(ordersArray);
     setShowModal((state) => !state);
   };
@@ -48,6 +49,15 @@ function DarkTable() {
     userInfo.orederStatus = "done";
     userInfo.order = checkOrder;
     console.log(userInfo);
+    if (userInfo.orderType === "Serial") {
+      try {
+        await httpRequest("POST", "/order/checked-serial", token, userInfo);
+      } catch (err) {
+        alert(err.message);
+      }
+      setSendReq((state) => !state);
+    }
+
     setShowModal((state) => !state);
   };
 
