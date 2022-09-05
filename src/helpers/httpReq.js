@@ -1,10 +1,10 @@
 import axios from "axios";
-import { apiUrl } from "../config.json";
+import apiUrl from "../config.json";
 
 const httpRequest = async (method, endPoint, token = "", data = "") => {
   const response = await axios({
     method: method,
-    url: `${apiUrl}${endPoint}`,
+    url: `${apiUrl.apiUrl}${endPoint}`,
     headers: {
       authorization: token,
     },

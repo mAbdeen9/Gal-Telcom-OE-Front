@@ -37,12 +37,13 @@ const OrderPanel = () => {
   useEffect(() => {
     dispatch(OrderSerialActions.reset());
     dispatch(OrderNoSerialActions.reset());
+    // eslint-disable-next-line
   }, []);
 
   const handelSubmintSerial = async (e) => {
     e.preventDefault();
     if (OrderSerialSlice.length === 0) return;
-    console.log(OrderSerialSliceFull);
+
     try {
       setIsLoading((state) => !state);
       const res = await httpRequest(

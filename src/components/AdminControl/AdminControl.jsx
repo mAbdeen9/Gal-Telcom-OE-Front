@@ -2,6 +2,9 @@ import React from "react";
 import { useRef } from "react";
 import Container from "../Container/Container";
 import classes from "./AdminControl.module.css";
+import httpRequest from "../../helpers/httpReq";
+import getToken from "../../helpers/getToken";
+import { toast } from "react-toastify";
 
 function AdminControl() {
   const usernameRef = useRef();
@@ -9,16 +12,31 @@ function AdminControl() {
   const storeNumberRef = useRef();
   const passwordRef = useRef();
   const deletePhoneRef = useRef();
+  const token = getToken();
 
-  const creatNewUser = (e) => {
+  const restForm = () => {
+    usernameRef.current.value = "";
+    phoneNumberRef.current.value = "";
+    storeNumberRef.current.value = "";
+    passwordRef.current.value = "";
+  };
+
+  const creatNewUser = async (e) => {
     e.preventDefault();
     const newUser = {
-      username: usernameRef.current.value,
-      phoneNumber: phoneNumberRef.current.value,
-      storeNumber: storeNumberRef.current.value,
+      name: usernameRef.current.value,
+      phone: phoneNumberRef.current.value,
+      id: storeNumberRef.current.value,
       password: passwordRef.current.value,
     };
-    console.log(newUser);
+
+    try {
+      await httpRequest("POST", "/user/create-new-user", token, newUser);
+      toast("משתמש חדש נוצר ");
+      restForm();
+    } catch (err) {
+      toast("חלק מפרטי המשתמש אינם חוקיים");
+    }
   };
 
   const deleteUser = (e) => {
@@ -46,7 +64,13 @@ function AdminControl() {
             </div>
             <div className={classes.input_box}>
               <label htmlFor="phoneNumber">מספר טלפון : </label>{" "}
-              <input ref={phoneNumberRef} id="phoneNumber" type="number" />
+              <input
+                minLength="6"
+                maxLength="12"
+                ref={phoneNumberRef}
+                id="phoneNumber"
+                type="number"
+              />
             </div>
             <div className={classes.input_box}>
               <label htmlFor="store">מספר מחסן : </label>{" "}

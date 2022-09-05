@@ -9,6 +9,7 @@ import { authActions } from "../../store/AuthSlice";
 import { useState } from "react";
 import { useEffect } from "react";
 import httpRequest from "../../helpers/httpReq";
+import { toast } from "react-toastify";
 
 const Login = () => {
   //
@@ -76,7 +77,7 @@ const Login = () => {
       }
     } catch (err) {
       if (err.message === "Network Error") {
-        alert(err.message);
+        toast(err.message);
       }
       setErromsg(true);
     }

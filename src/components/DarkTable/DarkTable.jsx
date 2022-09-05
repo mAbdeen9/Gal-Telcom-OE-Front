@@ -9,6 +9,7 @@ import AdminGear from "../AdminGear/AdminGear";
 import Loading from "../Loading/Loading";
 import ModalTable from "../Modal/ModalTable";
 import classes from "./DarkTable.module.css";
+import { toast } from "react-toastify";
 
 function DarkTable() {
   const [showModal, setShowModal] = useState(false);
@@ -28,11 +29,12 @@ function DarkTable() {
         const res = await httpRequest("GET", "/order/pending-orders", token);
         setDataFromApi(res.data.data);
       } catch (err) {
-        alert(err.message);
+        toast(err.message);
       }
       setDataLoading((state) => !state);
     };
     fetchData();
+    // eslint-disable-next-line
   }, [sendReq]);
 
   const showModalHadnler = () => setShowModal((state) => !state);
@@ -48,13 +50,13 @@ function DarkTable() {
     const userInfo = { ...orderInfo };
     userInfo.orederStatus = "done";
     userInfo.order = checkOrder;
-    console.log(userInfo);
+
     setLoading((state) => !state);
     if (userInfo.orderType === "Serial") {
       try {
         await httpRequest("POST", "/order/checked-serial", token, userInfo);
       } catch (err) {
-        alert(err.message);
+        toast(err.message);
       }
       setSendReq((state) => !state);
     }
@@ -63,7 +65,7 @@ function DarkTable() {
       try {
         await httpRequest("POST", "/order/checked-no-serial", token, userInfo);
       } catch (err) {
-        alert(err.message);
+        toast(err.message);
       }
       setSendReq((state) => !state);
     }
