@@ -45,10 +45,11 @@ function DarkTable() {
   };
 
   const updateOrderHandler = async () => {
-    const userInfo = orderInfo;
+    const userInfo = { ...orderInfo };
     userInfo.orederStatus = "done";
     userInfo.order = checkOrder;
     console.log(userInfo);
+    setLoading((state) => !state);
     if (userInfo.orderType === "Serial") {
       try {
         await httpRequest("POST", "/order/checked-serial", token, userInfo);
@@ -58,6 +59,15 @@ function DarkTable() {
       setSendReq((state) => !state);
     }
 
+    if (userInfo.orderType === "noSerial") {
+      try {
+        await httpRequest("POST", "/order/checked-no-serial", token, userInfo);
+      } catch (err) {
+        alert(err.message);
+      }
+      setSendReq((state) => !state);
+    }
+    setLoading((state) => !state);
     setShowModal((state) => !state);
   };
 
