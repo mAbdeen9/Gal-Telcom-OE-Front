@@ -39,10 +39,19 @@ function AdminControl() {
     }
   };
 
-  const deleteUser = (e) => {
+  const deleteUser = async (e) => {
     e.preventDefault();
     const userPhoneNum = deletePhoneRef.current.value;
-    console.log(userPhoneNum);
+    if (userPhoneNum.length <= 6) return;
+    const user = { phone: userPhoneNum };
+    try {
+      await httpRequest("DELETE", "/user/delete-user", token, user);
+      toast("המשתמש נמחק בהצלחה");
+      deletePhoneRef.current.value = "";
+    } catch (err) {
+      console.log(err);
+      toast(err.response.data.message);
+    }
   };
 
   return (

@@ -16,14 +16,14 @@ function App() {
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("meta-data")) || null;
     if (userInfo) {
-      const checkVaildToken = async () => {
+      const checkValidToken = async () => {
         try {
           await httpRequest("POST", "/login/valExpiredToken", userInfo.token);
         } catch (error) {
           nav("/login");
         }
       };
-      checkVaildToken();
+      checkValidToken();
       dispatch(authActions.validator(userInfo));
     }
     // eslint-disable-next-line
