@@ -51,8 +51,8 @@ const Login = () => {
     e.preventDefault();
     setPhoneIsTouched(true);
     setpasswordIsTouched(true);
-    if (!formIsVaild) return;
     const inputValues = { phone: phoneValue, password: passwordValue };
+    if (!formIsVaild) return;
     try {
       setConnecting(true);
       const res = await httpRequest("POST", "/login", "", inputValues);

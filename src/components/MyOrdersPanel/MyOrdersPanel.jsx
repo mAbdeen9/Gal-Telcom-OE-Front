@@ -50,6 +50,7 @@ function MyOrdersPanel() {
 
     fetchSerialData();
     fetchNoSerialData();
+    // eslint-disable-next-line
   }, []);
 
   const modalHandler = (data, date) => {

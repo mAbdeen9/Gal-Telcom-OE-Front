@@ -16,10 +16,12 @@ function AdminGear(props) {
     return () => {
       dispatch(CheckedOrderActions.reset());
     };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     dispatch(CheckedOrderActions.addToTheFinalOrder(selectOptionHadnler()));
+    // eslint-disable-next-line
   }, [value, checked]);
 
   const increment = () => {
