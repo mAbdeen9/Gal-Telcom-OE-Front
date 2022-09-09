@@ -71,6 +71,9 @@
   .card {
     width: 280px;
   }
+  .admin_panel_main {
+    font-size: 14px;
+  }
 
   .input_box input {
     width: 120px;
