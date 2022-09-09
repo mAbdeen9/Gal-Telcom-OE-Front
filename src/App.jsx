@@ -20,6 +20,7 @@ function App() {
         try {
           await httpRequest("POST", "/login/valExpiredToken", userInfo.token);
         } catch (error) {
+          console.log(error);
           nav("/login");
         }
       };
