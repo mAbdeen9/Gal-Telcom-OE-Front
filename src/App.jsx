@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { Fragment } from "react";
 import Router from "./components/Router";
 import { useEffect } from "react";
