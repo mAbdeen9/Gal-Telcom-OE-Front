@@ -89,9 +89,12 @@
   border-radius: 1rem;
 }
 .sizeRocket {
-  font-size: 2rem;
   text-align: center;
   margin: 1rem;
+}
+
+.sizeRocket img {
+  width: 50px;
 }
 
 .inputBox input:invalid {

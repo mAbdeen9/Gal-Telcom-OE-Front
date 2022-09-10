@@ -1,5 +1,4 @@
 import React from "react";
-
 import Logo from "../../components/Logo/Logo";
 import classes from "./Login.module.css";
 import useInput from "../../hooks/use-input";
@@ -10,6 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import httpRequest from "../../helpers/httpReq";
 import { toast } from "react-toastify";
+import loginIcon from "../../assets/locksmith.png";
 
 const Login = () => {
   //
@@ -149,9 +149,7 @@ const Login = () => {
             <span className={classes.error}>סיסמה או מספר טלפון שגויים</span>
           )}
           <div className={classes.sizeRocket}>
-            <span role="img" aria-label="emoji">
-              📝 ⬅️
-            </span>
+            <img src={loginIcon} alt="'login icon" />
           </div>
         </form>
       </div>
