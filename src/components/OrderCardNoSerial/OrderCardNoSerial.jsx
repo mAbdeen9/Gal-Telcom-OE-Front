@@ -84,6 +84,12 @@ function OrderCardNoSerial(props) {
         />
         <Gear
           noserial={true}
+          id="DROP-opti-250"
+          lable=" תוף טקטי סיב 250 מטר"
+          name="תוף טקטי סיב 250 מטר"
+        />
+        <Gear
+          noserial={true}
           id="RG6-Connectors"
           lable="חבילת קונקטורים RG6"
           name="חבילת קונקטורים RG6"

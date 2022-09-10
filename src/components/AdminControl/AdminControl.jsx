@@ -68,11 +68,11 @@ function AdminControl() {
               </span>
             </div>
             <div className={classes.input_box}>
-              <label htmlFor="userName">שם משתמש : </label>{" "}
+              <label htmlFor="userName">שם משתמש </label>{" "}
               <input ref={usernameRef} id="userName" type="text" />
             </div>
             <div className={classes.input_box}>
-              <label htmlFor="phoneNumber">מספר טלפון : </label>{" "}
+              <label htmlFor="phoneNumber">מספר טלפון </label>{" "}
               <input
                 minLength="6"
                 maxLength="12"
@@ -82,11 +82,11 @@ function AdminControl() {
               />
             </div>
             <div className={classes.input_box}>
-              <label htmlFor="store">מספר מחסן : </label>{" "}
+              <label htmlFor="store">מספר מחסן </label>{" "}
               <input ref={storeNumberRef} id="store" type="number" />
             </div>
             <div className={classes.input_box}>
-              <label htmlFor="password">סיסמה : </label>{" "}
+              <label htmlFor="password">סיסמה </label>{" "}
               <input ref={passwordRef} id="password" type="number" />
             </div>
             <div>
@@ -106,7 +106,7 @@ function AdminControl() {
             </div>
             <div className={classes.input_box}></div>
             <div className={classes.input_box}>
-              <label htmlFor="phoneNumber">מספר טלפון : </label>{" "}
+              <label htmlFor="phoneNumber">מספר טלפון </label>{" "}
               <input ref={deletePhoneRef} id="phoneNumber" type="number" />
             </div>
             <div className={classes.input_box}></div>
