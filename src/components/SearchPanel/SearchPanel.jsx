@@ -276,7 +276,7 @@ function SearchPanel() {
               ) : (
                 excelFile && (
                   <JsonToExcel
-                    title="להוריד כאקסל"
+                    title="קובץ אקסל"
                     data={[exData]}
                     fileName="הזמנות, ציוד שחור"
                     btnClassName={classes.excel}
