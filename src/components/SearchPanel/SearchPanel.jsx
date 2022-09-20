@@ -100,6 +100,10 @@ function SearchPanel() {
       };
 
       const orders = excelFileHandler(res);
+      if (Object.getOwnPropertyNames(orders).length <= 0) {
+        setIsloading3(false);
+        return;
+      }
       const data = { ...user, ...orders };
       setExdata(data);
       setExcelFile(true);
