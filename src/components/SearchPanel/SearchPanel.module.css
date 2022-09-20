@@ -28,6 +28,28 @@
   font-weight: 700;
 }
 
+.excel {
+  padding: 5px 15px;
+  border: 2px solid #0bc371;
+  border-radius: 3px;
+  background-color: transparent;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.ex_box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 60px;
+}
+
+.search_files {
+  text-align: start;
+}
+
 .serial_box {
   text-align: center;
   padding-top: 10px;
@@ -71,6 +93,17 @@
   border: 2px solid black;
   border-radius: 3px;
   background-color: #0bc371;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btnStyle2 {
+  padding: 5px 15px;
+  border: 2px solid black;
+  border-radius: 3px;
+  background-color: #4152af;
   color: white;
   font-family: "Varela Round", sans-serif;
   font-weight: bold;

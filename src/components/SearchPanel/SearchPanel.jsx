@@ -1,7 +1,9 @@
 import React from "react";
 import { useRef } from "react";
 import { useState } from "react";
+import { JsonToExcel } from "react-json-to-excel";
 import { toast } from "react-toastify";
+import excelFileHandler from "../../helpers/excelFile";
 import getToken from "../../helpers/getToken";
 import httpRequest from "../../helpers/httpReq";
 import Border from "../Border/Border";
@@ -13,6 +15,9 @@ import classes from "./SearchPanel.module.css";
 function SearchPanel() {
   const serialRef = useRef();
   const noSerialRef = useRef();
+  const storeId = useRef();
+  const startingDate = useRef();
+  const endDate = useRef();
   const token = getToken();
   const [showMoadl, setShowMoadl] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
@@ -21,6 +26,9 @@ function SearchPanel() {
   const [NoSerialData, setNoSerialData] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [isLoading2, setIsloading2] = useState(false);
+  const [isLoading3, setIsloading3] = useState(false);
+  const [excelFile, setExcelFile] = useState(false);
+  const [exData, setExdata] = useState();
 
   const modalHandler = (data, date, id, username) => {
     setShowMoadl((state) => !state);
@@ -66,6 +74,40 @@ function SearchPanel() {
       setNoSerialData([]);
     }
     setIsloading2((state) => !state);
+  };
+
+  const getExcelFileHandler = async (e) => {
+    e.preventDefault();
+    setExcelFile(false);
+    setIsloading3(true);
+    const searchInfo = {
+      id: storeId.current.value,
+      startingDate: startingDate.current.value,
+      endDate: endDate.current.value,
+    };
+
+    try {
+      const res = await httpRequest(
+        "POST",
+        "/order/aggregate-user-no-serial",
+        token,
+        searchInfo
+      );
+
+      const user = {
+        "שם הטכנאי": res.data.user[0].name,
+        חודש: `${searchInfo.startingDate} - ${searchInfo.endDate}`,
+      };
+
+      const orders = excelFileHandler(res);
+      const data = { ...user, ...orders };
+      setExdata(data);
+      setExcelFile(true);
+    } catch (err) {
+      console.log(err);
+      toast("invalid data");
+    }
+    setIsloading3(false);
   };
 
   return (
@@ -187,7 +229,62 @@ function SearchPanel() {
           )}
         </div>
         <br />
+        <Border />
+        <span className={classes.t1}>לחפש הזמנות לא סריאלי לפי תאריך</span>
+        <div className={classes.search_files}>
+          <form onSubmit={getExcelFileHandler}>
+            <div className="form-group">
+              <label htmlFor="store-id">מספר מחסן</label>
+              <input
+                ref={storeId}
+                type="number"
+                className="form-control"
+                id="store-id"
+              />
+            </div>
+            <br />
+            <div className="form-group">
+              <label htmlFor="start-date">תאריך התחלה מ</label>
+              <input
+                ref={startingDate}
+                type="date"
+                className="form-control"
+                id="start-date"
+              />
+            </div>
+            <br />
+            <div className="form-group">
+              <label htmlFor="end-date">עד תאריך</label>
+              <input
+                ref={endDate}
+                type="date"
+                className="form-control"
+                id="end-date"
+              />
+            </div>
+            <br />
+            <div className={classes.ex_box}>
+              <button type="submit" className={classes.btnStyle2}>
+                חפש
+              </button>
+              {isLoading3 ? (
+                <Loading />
+              ) : (
+                excelFile && (
+                  <JsonToExcel
+                    title="להוריד כאקסל"
+                    data={[exData]}
+                    fileName="הזמנות, ציוד שחור"
+                    btnClassName={classes.excel}
+                  />
+                )
+              )}
+            </div>
+          </form>
+          <br />
+        </div>
       </div>
+      <br />
     </Container>
   );
 }
