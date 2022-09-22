@@ -18,7 +18,6 @@ const excelFile = (dataFromApi) => {
 
 export const excelFileAll = (dataFromApi) => {
   const files = [];
-
   dataFromApi.data.data.forEach((o) => {
     files.forEach((i, e) => {
       if (i.user === o.user) {

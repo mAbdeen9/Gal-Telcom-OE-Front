@@ -50,6 +50,9 @@ function SearchPanel() {
         token
       );
       const data = res.data.data.reverse();
+      data.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      });
       setData(data);
     } catch (err) {
       toast(err.response.data.message);
@@ -69,6 +72,9 @@ function SearchPanel() {
         token
       );
       const data = res.data.data.reverse();
+      data.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      });
       setNoSerialData(data);
     } catch (err) {
       toast(err.response.data.message);
