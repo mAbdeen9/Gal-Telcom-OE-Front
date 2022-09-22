@@ -29,14 +29,13 @@
 }
 
 .excel {
-  padding: 3px 15px;
-  border: 2px solid #0bc371;
+  padding: 3px 15px !important;
+  border: 2px solid #0bc371 !important;
   border-radius: 3px;
   background-color: transparent;
   color: white;
   font-family: "Varela Round", sans-serif;
   font-weight: bold;
-  font-size: 1rem;
 }
 
 .ex_box {

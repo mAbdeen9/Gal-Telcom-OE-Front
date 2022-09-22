@@ -4,6 +4,7 @@ import { useState } from "react";
 import { JsonToExcel } from "react-json-to-excel";
 import { toast } from "react-toastify";
 import excelFileHandler from "../../helpers/excelFile";
+import { excelFileAll } from "../../helpers/excelFile";
 import getToken from "../../helpers/getToken";
 import httpRequest from "../../helpers/httpReq";
 import Border from "../Border/Border";
@@ -86,30 +87,55 @@ function SearchPanel() {
       endDate: endDate.current.value,
     };
 
-    try {
-      const res = await httpRequest(
-        "POST",
-        "/order/aggregate-user-no-serial",
-        token,
-        searchInfo
-      );
+    if (searchInfo.id) {
+      try {
+        const res = await httpRequest(
+          "POST",
+          "/order/aggregate-user-no-serial",
+          token,
+          searchInfo
+        );
 
-      const user = {
-        "שם הטכנאי": res.data.user[0].name,
-        חודש: `${searchInfo.startingDate} - ${searchInfo.endDate}`,
-      };
+        const user = {
+          "שם הטכנאי": res.data.user[0].name,
+          חודש: `${searchInfo.startingDate} - ${searchInfo.endDate}`,
+        };
 
-      const orders = excelFileHandler(res);
-      if (Object.getOwnPropertyNames(orders).length <= 0) {
-        setIsloading3(false);
-        return;
+        const orders = excelFileHandler(res);
+        if (Object.getOwnPropertyNames(orders).length <= 0) {
+          setIsloading3(false);
+          return;
+        }
+        const data = { ...user, ...orders };
+        setExdata([data]);
+        setExcelFile(true);
+      } catch (err) {
+        console.log(err);
+        toast("invalid data");
       }
-      const data = { ...user, ...orders };
-      setExdata(data);
-      setExcelFile(true);
-    } catch (err) {
-      console.log(err);
-      toast("invalid data");
+    }
+
+    if (!searchInfo.id) {
+      try {
+        const res = await httpRequest(
+          "POST",
+          "/order/aggregate-all-no-serial",
+          token,
+          searchInfo
+        );
+
+        const orders = excelFileAll(res);
+
+        if (orders.length <= 0) {
+          setIsloading3(false);
+          return;
+        }
+        setExdata(orders);
+        setExcelFile(true);
+      } catch (err) {
+        console.log(err);
+        toast("invalid data all");
+      }
     }
     setIsloading3(false);
   };
@@ -277,7 +303,7 @@ function SearchPanel() {
                 excelFile && (
                   <JsonToExcel
                     title="קובץ אקסל"
-                    data={[exData]}
+                    data={exData}
                     fileName="הזמנות, ציוד שחור"
                     btnClassName={classes.excel}
                   />
