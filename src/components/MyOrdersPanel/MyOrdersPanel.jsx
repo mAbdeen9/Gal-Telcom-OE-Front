@@ -26,7 +26,11 @@ function MyOrdersPanel() {
       try {
         setIsLoading((state) => !state);
         const res = await httpRequest("GET", "/order/my-serials-orders", token);
-        setData(res.data.data);
+        const data = res.data.data.reverse();
+        data.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+        setData(data);
       } catch (err) {
         setError(() => ({ status: true, message: err.message }));
       }
@@ -41,7 +45,12 @@ function MyOrdersPanel() {
           "/order/my-no-serials-orders",
           token
         );
-        setNoSerialData(res.data.data);
+        const data = res.data.data.reverse();
+        data.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        setNoSerialData(data);
       } catch (err) {
         setError2(() => ({ status: true, message: err.message }));
       }

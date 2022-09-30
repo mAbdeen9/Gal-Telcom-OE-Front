@@ -23,6 +23,12 @@ function OrderCard(props) {
         />
         <Gear
           serial={true}
+          id="ULTRA"
+          lable="נתב סיבים דגם ULTRA"
+          name="נתב סיבים דגם ULTRA"
+        />
+        <Gear
+          serial={true}
           id="NOKIA"
           lable="מודם סיבים NOKIA"
           name="מודם סיבים NOKIA"

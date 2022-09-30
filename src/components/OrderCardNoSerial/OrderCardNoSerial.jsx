@@ -40,17 +40,36 @@ function OrderCardNoSerial(props) {
         />
         <Gear
           many={true}
+          id="connector-fiber-b/b"
+          lable="מגשר אופטי גדול/גדול"
+          name="מגשר אופטי גדול/גדול"
+        />
+        <Gear
+          many={true}
           id="connector-fiber-s/b"
           lable="מגשר אופטי קטן/גדול"
           name="מגשר אופטי קטן/גדול"
         />
         <Gear
           many={true}
-          id="connector-fiber-green"
-          lable="קונקטורים אופטי"
-          name="קונקטורים אופטי"
+          id="connector-fiber-green-s-b"
+          lable="קונקטורים אופטי קטן/גדול"
+          name="קונקטורים אופטי  קטן/גדול"
+        />
+        <Gear
+          many={true}
+          id="connector-fiber-green-s-s"
+          lable="קונקטורים אופטי קטן/קטן"
+          name="קונקטורים אופטי  קטן/קטן"
         />
         <Gear many={true} id="nose-socket" lable="שקע אף" name="שקע אף" />
+        <Gear
+          many={true}
+          id="nose-socket-cat5e"
+          lable="שקע rj45"
+          name="שקע rj45"
+        />
+
         <Gear many={true} id="socket-tel1" lable="שקע טלפון" name="שקע טלפון" />
         <Gear
           many={true}
@@ -60,9 +79,41 @@ function OrderCardNoSerial(props) {
         />
         <Gear
           many={true}
+          id="socket-tel12"
+          lable=" שקע טלפון חיצוני"
+          name="שקע טלפון חיצוני"
+        />
+        <Gear
+          many={true}
+          id="socket-tel24"
+          lable=" שקע טלפון כפול חיצוני"
+          name="שקע טלפון כפול חיצוני"
+        />
+        <Gear
+          many={true}
           id="socket-tel3"
           lable="שקע טלפון גוויס"
           name="שקע טלפון גוויס"
+        />
+        <Gear
+          many={true}
+          id="socket-tel4"
+          lable=" שקע טלפון גוויס כפול"
+          name="שקע טלפון גוויס כפול"
+        />
+
+        <Gear
+          many={true}
+          id="מפצל קואקס 4/1"
+          lable="מפצל קואקס 4/1"
+          name="מפצל קואקס 4/1"
+        />
+
+        <Gear
+          many={true}
+          id="מפצל קואקס 3/1"
+          lable="מפצל קואקס 3/1"
+          name="מפצל קואקס 3/1"
         />
         <Gear
           noserial={true}
@@ -88,6 +139,13 @@ function OrderCardNoSerial(props) {
           lable=" תוף טקטי סיב 250 מטר"
           name="תוף טקטי סיב 250 מטר"
         />
+
+        <Gear
+          noserial={true}
+          id="mechanical-optical-connectors"
+          lable="חבילת מחברים  מכניים "
+          name=" חבילת מחברים אופטיים מכניים"
+        />
         <Gear
           noserial={true}
           id="RG6-Connectors"
@@ -102,15 +160,27 @@ function OrderCardNoSerial(props) {
         />
         <Gear
           noserial={true}
+          id="RJ45-Connectors"
+          lable="חבילת קונקטורים RJ45"
+          name="חבילת קונקטורים RJ45"
+        />
+        <Gear
+          noserial={true}
           id="SPLICE-COAX"
           lable="חבילת Splice-Coax"
           name="חבילת Splice-Coax"
         />
         <Gear
           noserial={true}
-          id="Clipsim"
-          lable="חבילת קליפסים"
-          name="חבילת קליפסים"
+          id="Clipsim6"
+          lable=" חבילת קליפסים 6"
+          name="6 חבילת קליפסים"
+        />
+        <Gear
+          noserial={true}
+          id="Clipsim4"
+          lable="חבילת קליפסים 4"
+          name="4 חבילת קליפסים"
         />
         <Gear
           noserial={true}
