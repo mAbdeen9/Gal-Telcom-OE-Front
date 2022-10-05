@@ -310,7 +310,7 @@ function SearchPanel() {
                   <JsonToExcel
                     title="קובץ אקסל"
                     data={exData}
-                    fileName="הזמנות, ציוד שחור"
+                    fileName="הזמנות, ציוד שחור "
                     btnClassName={classes.excel}
                   />
                 )

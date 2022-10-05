@@ -10,9 +10,11 @@ import Loading from "../Loading/Loading";
 import ModalTable from "../Modal/ModalTable";
 import classes from "./DarkTable.module.css";
 import { toast } from "react-toastify";
+import { useRef } from "react";
 
 function DarkTable() {
   const [showModal, setShowModal] = useState(false);
+  const [showTextAria, setShowTextAria] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
   const [orderInfo, setorderInfo] = useState({});
   const [loading, setLoading] = useState(false);
@@ -21,6 +23,7 @@ function DarkTable() {
   const [sendReq, setSendReq] = useState(false);
   const checkOrder = useSelector((state) => state.CheckedOrder.order);
   const token = getToken();
+  const textRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +41,7 @@ function DarkTable() {
   }, [sendReq]);
 
   const showModalHadnler = () => setShowModal((state) => !state);
-
+  const showTextArea = () => setShowTextAria((state) => !state);
   const tableRowHandler = (order, ordersArray) => {
     const { id, username, date, time, orederStatus, orderType, _id } = order;
     setorderInfo({ id, username, date, time, orederStatus, orderType, _id });
@@ -53,6 +56,14 @@ function DarkTable() {
 
     setLoading((state) => !state);
     if (userInfo.orderType === "Serial") {
+      const textInput = {
+        serials: textRef.current?.value,
+        order: userInfo.order.filter((o) => o.value !== "--"),
+        id: userInfo.id,
+        date: userInfo.date,
+        user: userInfo.username,
+      };
+      console.log(textInput);
       try {
         await httpRequest("POST", "/order/checked-serial", token, userInfo);
       } catch (err) {
@@ -102,9 +113,17 @@ function DarkTable() {
                   />
                 );
               })}
+              {showTextAria && (
+                <div className={classes.text__area}>
+                  <textarea ref={textRef} cols="50" rows="10"></textarea>
+                </div>
+              )}
               <div className={classes.button_box}>
                 <button className={classes.done} onClick={updateOrderHandler}>
                   {loading ? "טוען..." : "בוצע"}
+                </button>
+                <button className={classes.textBtn} onClick={showTextArea}>
+                  סרוק
                 </button>
                 <button className={classes.close} onClick={showModalHadnler}>
                   סגור

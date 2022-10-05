@@ -44,6 +44,22 @@
   color: black;
 }
 
+.textBtn {
+  background-color: #f29339;
+  padding: 4px 16px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  outline: none;
+}
+
+.textBtn:hover {
+  color: black;
+}
+
 .button_box {
   width: 95%;
   display: -webkit-box;
@@ -58,6 +74,14 @@
   text-align: center;
 
   width: 50%;
+}
+
+.text__area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 780px) {
