@@ -178,7 +178,10 @@ function SearchPanel() {
       };
 
       const orders = excelFileSerils(res);
-
+      if (orders.serials === "") {
+        setIsloading4(false);
+        return;
+      }
       const data = { ...user, ...orders };
 
       setExSerialData([data]);
@@ -216,101 +219,6 @@ function SearchPanel() {
         </Modal>
       )}
       <div className={classes.box}>
-        <>
-          ההזמנות ממוינות לפי תאריך ההזמנה , החל מההזמנה האחרונה , (סדר יורד)
-          <div className={classes.sizeRocket}>
-            <span role="img" aria-label="emoj2i">
-              💥 🗓
-            </span>
-          </div>
-        </>
-        <span className={classes.t1}>לחפש הזמנות סריאלי </span>
-        <div className={classes.search_input}>
-          <input
-            placeholder="חיפוש לפי מספר מחסן"
-            type="number"
-            ref={serialRef}
-          />{" "}
-          &nbsp;
-          <button onClick={serialHandler}>
-            <i className="bi bi-search"></i>
-          </button>
-        </div>
-        <div className={classes.serial_box}>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            data.map((order, index) => {
-              return (
-                <div key={index} className={classes.line}>
-                  <div>תאריך : {order.date}</div>
-                  <div>
-                    <button
-                      onClick={() => {
-                        modalHandler(
-                          order.order,
-                          order.date,
-                          order.id,
-                          order.username
-                        );
-                      }}
-                      className={
-                        order.orederStatus === "pending"
-                          ? classes.pending
-                          : classes.btnStyle
-                      }
-                    >
-                      פרטי הזמנה
-                    </button>
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
-        <Border />
-        <span className={classes.t1}>לחפש הזמנות לא סריאלי</span>
-        <div className={classes.search_input}>
-          <input
-            placeholder="חיפוש לפי מספר מחסן"
-            type="number"
-            ref={noSerialRef}
-          />
-          &nbsp;
-          <button onClick={noSerialHandler}>
-            <i className="bi bi-search"></i>
-          </button>
-        </div>
-        <div className={classes.serial_box}>
-          {isLoading2 ? (
-            <Loading />
-          ) : (
-            NoSerialData.map((order, index) => {
-              return (
-                <div key={index} className={classes.line}>
-                  <div>תאריך : {order.date}</div>
-                  <div>
-                    <button
-                      onClick={() => {
-                        modalHandler(
-                          order.order,
-                          order.date,
-                          order.id,
-                          order.username
-                        );
-                      }}
-                      className={classes.btnStyle}
-                    >
-                      פרטי הזמנה
-                    </button>
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
-        <br />
-        <Border />
         <div className={classes.search_files__box}>
           <div className={classes.n__box}>
             <span className={classes.t1}>לחפש הזמנות לא סריאלי לפי תאריך</span>
@@ -423,6 +331,102 @@ function SearchPanel() {
             </div>
           </div>
         </div>
+        <Border></Border>
+        <>
+          ההזמנות ממוינות לפי תאריך ההזמנה , החל מההזמנה האחרונה , (סדר יורד)
+          <div className={classes.sizeRocket}>
+            <span role="img" aria-label="emoj2i">
+              💥 🗓
+            </span>
+          </div>
+        </>
+        <span className={classes.t1}>לחפש הזמנות סריאלי </span>
+        <div className={classes.search_input}>
+          <input
+            placeholder="חיפוש לפי מספר מחסן"
+            type="number"
+            ref={serialRef}
+          />{" "}
+          &nbsp;
+          <button onClick={serialHandler}>
+            <i className="bi bi-search"></i>
+          </button>
+        </div>
+        <div className={classes.serial_box}>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            data.map((order, index) => {
+              return (
+                <div key={index} className={classes.line}>
+                  <div>תאריך : {order.date}</div>
+                  <div>
+                    <button
+                      onClick={() => {
+                        modalHandler(
+                          order.order,
+                          order.date,
+                          order.id,
+                          order.username
+                        );
+                      }}
+                      className={
+                        order.orederStatus === "pending"
+                          ? classes.pending
+                          : classes.btnStyle
+                      }
+                    >
+                      פרטי הזמנה
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+        <Border />
+        <span className={classes.t1}>לחפש הזמנות לא סריאלי</span>
+        <div className={classes.search_input}>
+          <input
+            placeholder="חיפוש לפי מספר מחסן"
+            type="number"
+            ref={noSerialRef}
+          />
+          &nbsp;
+          <button onClick={noSerialHandler}>
+            <i className="bi bi-search"></i>
+          </button>
+        </div>
+        <div className={classes.serial_box}>
+          {isLoading2 ? (
+            <Loading />
+          ) : (
+            NoSerialData.map((order, index) => {
+              return (
+                <div key={index} className={classes.line}>
+                  <div>תאריך : {order.date}</div>
+                  <div>
+                    <button
+                      onClick={() => {
+                        modalHandler(
+                          order.order,
+                          order.date,
+                          order.id,
+                          order.username
+                        );
+                      }}
+                      className={classes.btnStyle}
+                    >
+                      פרטי הזמנה
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+        <br />
+        <Border />
       </div>
       <br />
     </Container>
