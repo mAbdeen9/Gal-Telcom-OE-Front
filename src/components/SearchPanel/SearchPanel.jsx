@@ -5,6 +5,7 @@ import { JsonToExcel } from "react-json-to-excel";
 import { toast } from "react-toastify";
 import excelFileHandler from "../../helpers/excelFile";
 import { excelFileAll } from "../../helpers/excelFile";
+import { excelFileSerils } from "../../helpers/excelFile";
 import getToken from "../../helpers/getToken";
 import httpRequest from "../../helpers/httpReq";
 import Border from "../Border/Border";
@@ -19,6 +20,9 @@ function SearchPanel() {
   const storeId = useRef();
   const startingDate = useRef();
   const endDate = useRef();
+  const storeId2 = useRef();
+  const startingDate2 = useRef();
+  const endDate2 = useRef();
   const token = getToken();
   const [showMoadl, setShowMoadl] = useState(false);
   const [modalJsx, setModalJsx] = useState([]);
@@ -28,8 +32,12 @@ function SearchPanel() {
   const [isLoading, setIsloading] = useState(false);
   const [isLoading2, setIsloading2] = useState(false);
   const [isLoading3, setIsloading3] = useState(false);
+  const [isLoading4, setIsloading4] = useState(false);
   const [excelFile, setExcelFile] = useState(false);
+  const [excelFile2, setExcelFile2] = useState(false);
+
   const [exData, setExdata] = useState();
+  const [exSerialData, setExSerialData] = useState();
 
   const modalHandler = (data, date, id, username) => {
     setShowMoadl((state) => !state);
@@ -144,6 +152,43 @@ function SearchPanel() {
       }
     }
     setIsloading3(false);
+  };
+
+  const getExcelFileHandlerSerials = async (e) => {
+    e.preventDefault();
+    setExcelFile2(false);
+    setIsloading4(true);
+    const searchInfo = {
+      id: storeId2.current.value,
+      startingDate: startingDate2.current.value,
+      endDate: endDate2.current.value,
+    };
+
+    try {
+      const res = await httpRequest(
+        "POST",
+        "/order/get-excel-sheet-serial",
+        token,
+        searchInfo
+      );
+
+      const user = {
+        "שם הטכנאי": res.data.user[0].name,
+        חודש: `${searchInfo.startingDate} - ${searchInfo.endDate}`,
+      };
+
+      const orders = excelFileSerils(res);
+
+      const data = { ...user, ...orders };
+
+      setExSerialData([data]);
+      setExcelFile2(true);
+    } catch (err) {
+      console.log(err);
+      toast("invalid data");
+    }
+
+    setIsloading4(false);
   };
 
   return (
@@ -266,58 +311,117 @@ function SearchPanel() {
         </div>
         <br />
         <Border />
-        <span className={classes.t1}>לחפש הזמנות לא סריאלי לפי תאריך</span>
-        <div className={classes.search_files}>
-          <form onSubmit={getExcelFileHandler}>
-            <div className="form-group">
-              <label htmlFor="store-id">מספר מחסן</label>
-              <input
-                ref={storeId}
-                type="number"
-                className="form-control"
-                id="store-id"
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="start-date">תאריך התחלה מ</label>
-              <input
-                ref={startingDate}
-                type="date"
-                className="form-control"
-                id="start-date"
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="end-date">עד תאריך</label>
-              <input
-                ref={endDate}
-                type="date"
-                className="form-control"
-                id="end-date"
-              />
-            </div>
-            <br />
-            <div className={classes.ex_box}>
-              <button type="submit" className={classes.btnStyle2}>
-                חפש
-              </button>
-              {isLoading3 ? (
-                <Loading />
-              ) : (
-                excelFile && (
-                  <JsonToExcel
-                    title="קובץ אקסל"
-                    data={exData}
-                    fileName="הזמנות, ציוד שחור "
-                    btnClassName={classes.excel}
+        <div className={classes.search_files__box}>
+          <div className={classes.n__box}>
+            <span className={classes.t1}>לחפש הזמנות לא סריאלי לפי תאריך</span>
+            <div className={classes.search_files}>
+              <form onSubmit={getExcelFileHandler}>
+                <div className="form-group">
+                  <label htmlFor="store-id">מספר מחסן</label>
+                  <input
+                    ref={storeId}
+                    type="number"
+                    className="form-control"
+                    id="store-id"
                   />
-                )
-              )}
+                </div>
+                <br />
+                <div className="form-group">
+                  <label htmlFor="start-date">תאריך התחלה מ</label>
+                  <input
+                    ref={startingDate}
+                    type="date"
+                    className="form-control"
+                    id="start-date"
+                  />
+                </div>
+                <br />
+                <div className="form-group">
+                  <label htmlFor="end-date">עד תאריך</label>
+                  <input
+                    ref={endDate}
+                    type="date"
+                    className="form-control"
+                    id="end-date"
+                  />
+                </div>
+                <br />
+                <div className={classes.ex_box}>
+                  <button type="submit" className={classes.btnStyle2}>
+                    חפש
+                  </button>
+                  {isLoading3 ? (
+                    <Loading />
+                  ) : (
+                    excelFile && (
+                      <JsonToExcel
+                        title="קובץ אקסל"
+                        data={exData}
+                        fileName="הזמנות, ציוד שחור "
+                        btnClassName={classes.excel}
+                      />
+                    )
+                  )}
+                </div>
+              </form>
+              <br />
             </div>
-          </form>
-          <br />
+          </div>
+          <div className={classes.s__box}>
+            <span className={classes.t1}>לחפש הזמנות סריאלי לפי תאריך</span>
+            <div className={classes.search_files}>
+              <form onSubmit={getExcelFileHandlerSerials}>
+                <div className="form-group">
+                  <label htmlFor="store-id">מספר מחסן</label>
+                  <input
+                    ref={storeId2}
+                    type="number"
+                    className="form-control"
+                    id="store-id"
+                  />
+                </div>
+                <br />
+                <div className="form-group">
+                  <label htmlFor="start-date">תאריך התחלה מ</label>
+                  <input
+                    ref={startingDate2}
+                    type="date"
+                    className="form-control"
+                    id="start-date"
+                  />
+                </div>
+                <br />
+                <div className="form-group">
+                  <label htmlFor="end-date">עד תאריך</label>
+                  <input
+                    ref={endDate2}
+                    type="date"
+                    className="form-control"
+                    id="end-date"
+                  />
+                </div>
+                <br />
+                <div className={classes.ex_box}>
+                  <button type="submit" className={classes.btnStyle2}>
+                    חפש
+                  </button>
+                  {isLoading4 ? (
+                    <Loading />
+                  ) : (
+                    excelFile2 && (
+                      <JsonToExcel
+                        title="קובץ אקסל"
+                        data={exSerialData}
+                        fileName="excel-sheet-serial"
+                        btnClassName={classes.excel}
+                      />
+                    )
+                  )}
+                </div>
+              </form>
+              <br />
+            </div>
+          </div>
         </div>
       </div>
       <br />

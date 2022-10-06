@@ -167,6 +167,26 @@
   font-size: 1.4rem;
 }
 
+.search_files__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+.n__box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+.s__box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
 @media (max-width: 780px) {
   .serial_box {
     width: 95%;

@@ -47,4 +47,18 @@ export const excelFileAll = (dataFromApi) => {
   return files;
 };
 
+export const excelFileSerils = (dataFromApi) => {
+  const file = {};
+
+  const allSerials = dataFromApi.data?.data?.map((e) => {
+    return e._id;
+  });
+
+  if (allSerials) {
+    file.serials = allSerials.join("");
+  }
+
+  return file;
+};
+
 export default excelFile;

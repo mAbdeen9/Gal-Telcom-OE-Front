@@ -24,6 +24,7 @@ function DarkTable() {
   const checkOrder = useSelector((state) => state.CheckedOrder.order);
   const token = getToken();
   const textRef = useRef();
+  let dataType;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,9 +64,15 @@ function DarkTable() {
         date: userInfo.date,
         user: userInfo.username,
       };
-      console.log(textInput);
+
       try {
         await httpRequest("POST", "/order/checked-serial", token, userInfo);
+        await httpRequest(
+          "POST",
+          "/order/add-serial-to-list",
+          token,
+          textInput
+        );
       } catch (err) {
         toast(err.message);
       }
@@ -104,6 +111,7 @@ function DarkTable() {
               <h5>מחסן טכנאי : {orderInfo.id}</h5>
               <h5>תאריך : {orderInfo.date}</h5>
               {modalJsx.map((data, index) => {
+                dataType = data.type;
                 return (
                   <AdminGear
                     key={index}
@@ -122,9 +130,11 @@ function DarkTable() {
                 <button className={classes.done} onClick={updateOrderHandler}>
                   {loading ? "טוען..." : "בוצע"}
                 </button>
-                <button className={classes.textBtn} onClick={showTextArea}>
-                  סרוק
-                </button>
+                {dataType === "serial" && (
+                  <button className={classes.textBtn} onClick={showTextArea}>
+                    סרוק
+                  </button>
+                )}
                 <button className={classes.close} onClick={showModalHadnler}>
                   סגור
                 </button>
