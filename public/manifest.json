@@ -18,8 +18,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "https://gal-tellcom.web.app/home",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#52AED6"
+  "background_color": "#ffffff"
 }
